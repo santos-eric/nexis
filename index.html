@@ -1,1666 +1,2167 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NEXIS — Learn the Language of Tomorrow</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<style>
-:root {
-  --sky: #e8f4fd;
-  --deep: #0f2a4a;
-  --teal: #00b4a0;
-  --teal-light: #e0f7f4;
-  --coral: #ff6b6b;
-  --sun: #ffd166;
-  --lavender: #a78bfa;
-  --mint: #6ee7b7;
-  --text: #1a2e44;
-  --muted: #6b7c93;
-  --white: #ffffff;
-  --card-bg: #ffffff;
-  --border: #e2ecf4;
-  --body: 'Nunito', sans-serif;
-  --display: 'Outfit', sans-serif;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: var(--body);
-  color: var(--text);
-  background: var(--sky);
-  overflow-x: hidden;
-}
-
-/* NAV */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
-  z-index: 100;
-  padding: 0 2rem;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.nav-logo {
-  font-family: var(--display);
-  font-weight: 900;
-  font-size: 1.6rem;
-  color: var(--deep);
-  letter-spacing: -0.04em;
-}
-
-.nav-logo span { color: var(--teal); }
-
-.nav-links {
-  display: flex;
-  gap: 0.25rem;
-  list-style: none;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: var(--muted);
-  font-weight: 600;
-  font-size: 0.88rem;
-  padding: 0.4rem 0.9rem;
-  border-radius: 20px;
-  transition: all 0.2s;
-}
-
-.nav-links a:hover {
-  background: var(--teal-light);
-  color: var(--teal);
-}
-
-/* HERO */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 7rem 2rem 5rem;
-  position: relative;
-  background: linear-gradient(160deg, #e8f4fd 0%, #d4f0ea 50%, #e8eafd 100%);
-  overflow: hidden;
-}
-
-.hero-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.35;
-  pointer-events: none;
-}
-
-.blob1 { width: 500px; height: 500px; background: var(--teal); top: -100px; right: -100px; }
-.blob2 { width: 400px; height: 400px; background: var(--lavender); bottom: -50px; left: -80px; }
-.blob3 { width: 300px; height: 300px; background: var(--sun); top: 40%; left: 60%; }
-
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 100px;
-  padding: 0.4rem 1rem;
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--teal);
-  margin-bottom: 2rem;
-  box-shadow: 0 2px 12px rgba(0,180,160,0.15);
-  animation: fadeDown 0.6s ease both;
-}
-
-.hero-badge::before {
-  content: '✦';
-  font-size: 0.7rem;
-}
-
-h1.hero-title {
-  font-family: var(--display);
-  font-size: clamp(3.5rem, 10vw, 7.5rem);
-  font-weight: 900;
-  line-height: 0.92;
-  letter-spacing: -0.04em;
-  color: var(--deep);
-  margin-bottom: 1.5rem;
-  animation: fadeDown 0.6s 0.1s ease both;
-}
-
-h1.hero-title .teal { color: var(--teal); }
-h1.hero-title .coral { color: var(--coral); }
-
-.hero-sub {
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
-  color: var(--muted);
-  max-width: 600px;
-  line-height: 1.7;
-  margin-bottom: 2.5rem;
-  animation: fadeDown 0.6s 0.2s ease both;
-  font-weight: 500;
-}
-
-.hero-sub strong { color: var(--deep); }
-
-.hero-cta {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  justify-content: center;
-  animation: fadeDown 0.6s 0.3s ease both;
-}
-
-.btn-primary {
-  background: var(--teal);
-  color: white;
-  border: none;
-  padding: 0.9rem 2rem;
-  border-radius: 100px;
-  font-family: var(--body);
-  font-size: 1rem;
-  font-weight: 800;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-block;
-  transition: all 0.2s;
-  box-shadow: 0 4px 20px rgba(0,180,160,0.35);
-}
-
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,180,160,0.45); }
-
-.btn-secondary {
-  background: white;
-  color: var(--deep);
-  border: 2px solid var(--border);
-  padding: 0.9rem 2rem;
-  border-radius: 100px;
-  font-family: var(--body);
-  font-size: 1rem;
-  font-weight: 800;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-block;
-  transition: all 0.2s;
-}
-
-.btn-secondary:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-2px); }
-
-.hero-stats {
-  display: flex;
-  gap: 3rem;
-  margin-top: 4rem;
-  animation: fadeDown 0.6s 0.4s ease both;
-}
-
-.stat { text-align: center; }
-.stat-num {
-  font-family: var(--display);
-  font-size: 2rem;
-  font-weight: 900;
-  color: var(--deep);
-  display: block;
-}
-.stat-label { font-size: 0.8rem; color: var(--muted); font-weight: 600; }
-
-/* FLOATING WORDS */
-.float-words {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.fw {
-  position: absolute;
-  font-family: monospace;
-  font-size: 0.85rem;
-  font-weight: 700;
-  padding: 0.35rem 0.75rem;
-  border-radius: 100px;
-  animation: floatWord 8s ease-in-out infinite;
-  opacity: 0.6;
-}
-
-.fw1 { background: #e0f7f4; color: var(--teal); top: 20%; left: 8%; animation-delay: 0s; }
-.fw2 { background: #fff3cd; color: #b8860b; top: 35%; right: 6%; animation-delay: 1.5s; }
-.fw3 { background: #fde8e8; color: var(--coral); top: 65%; left: 5%; animation-delay: 3s; }
-.fw4 { background: #ede9fe; color: var(--lavender); top: 15%; right: 15%; animation-delay: 0.8s; }
-.fw5 { background: #d1fae5; color: #059669; bottom: 25%; right: 8%; animation-delay: 2s; }
-.fw6 { background: #e0f7f4; color: var(--teal); bottom: 30%; left: 10%; animation-delay: 4s; }
-
-@keyframes floatWord {
-  0%, 100% { transform: translateY(0px) rotate(-1deg); }
-  50% { transform: translateY(-12px) rotate(1deg); }
-}
-
-/* SECTION SHARED */
-section {
-  padding: 5rem 2rem;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.section-tag {
-  display: inline-block;
-  background: var(--teal-light);
-  color: var(--teal);
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 0.35rem 1rem;
-  border-radius: 100px;
-  margin-bottom: 1rem;
-}
-
-.section-tag.coral { background: #fde8e8; color: var(--coral); }
-.section-tag.sun { background: #fff8e1; color: #b8860b; }
-.section-tag.lavender { background: #ede9fe; color: var(--lavender); }
-
-h2.section-title {
-  font-family: var(--display);
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  color: var(--deep);
-  margin-bottom: 1rem;
-  line-height: 1.1;
-}
-
-.section-desc {
-  font-size: 1.05rem;
-  color: var(--muted);
-  max-width: 580px;
-  line-height: 1.7;
-  margin-bottom: 3rem;
-  font-weight: 500;
-}
-
-/* WHY NEXIS */
-#why {
-  background: white;
-  max-width: 100%;
-  padding: 5rem 2rem;
-}
-
-#why .inner {
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.why-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-
-.why-card {
-  background: var(--sky);
-  border-radius: 20px;
-  padding: 2rem 1.5rem;
-  transition: transform 0.2s, box-shadow 0.2s;
-  border: 2px solid transparent;
-}
-
-.why-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(0,0,0,0.08);
-  border-color: var(--teal-light);
-}
-
-.why-icon {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  display: block;
-}
-
-.why-card h3 {
-  font-family: var(--display);
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--deep);
-  margin-bottom: 0.5rem;
-}
-
-.why-card p {
-  font-size: 0.9rem;
-  color: var(--muted);
-  line-height: 1.65;
-}
-
-/* LESSONS */
-#lessons { background: var(--sky); max-width: 100%; padding: 5rem 2rem; }
-#lessons .inner { max-width: 1100px; margin: 0 auto; }
-
-.lesson-tabs {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  margin-bottom: 2rem;
-}
-
-.tab-btn {
-  padding: 0.55rem 1.2rem;
-  border-radius: 100px;
-  border: 2px solid var(--border);
-  background: white;
-  font-family: var(--body);
-  font-weight: 700;
-  font-size: 0.88rem;
-  color: var(--muted);
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.tab-btn.active, .tab-btn:hover {
-  background: var(--teal);
-  border-color: var(--teal);
-  color: white;
-}
-
-.lesson-panel { display: none; }
-.lesson-panel.active { display: block; animation: fadeIn 0.3s ease; }
-
-@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-
-/* Lesson content */
-.lesson-intro {
-  background: white;
-  border-radius: 20px;
-  padding: 2rem;
-  margin-bottom: 1.5rem;
-  border: 2px solid var(--border);
-}
-
-.lesson-intro h3 {
-  font-family: var(--display);
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: var(--deep);
-  margin-bottom: 0.75rem;
-}
-
-.lesson-intro p {
-  font-size: 0.95rem;
-  color: var(--muted);
-  line-height: 1.7;
-}
-
-.rule-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.rule-card {
-  background: white;
-  border-radius: 16px;
-  padding: 1.5rem;
-  border: 2px solid var(--border);
-  transition: border-color 0.2s;
-}
-
-.rule-card:hover { border-color: var(--teal); }
-
-.rule-card .label {
-  font-size: 0.7rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--teal);
-  margin-bottom: 0.6rem;
-}
-
-.rule-card h4 {
-  font-family: var(--display);
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--deep);
-  margin-bottom: 0.4rem;
-}
-
-.rule-card p {
-  font-size: 0.85rem;
-  color: var(--muted);
-  line-height: 1.6;
-}
-
-.example-block {
-  background: var(--deep);
-  border-radius: 16px;
-  padding: 1.5rem 2rem;
-  margin-top: 0.5rem;
-}
-
-.example-row {
-  display: flex;
-  gap: 1.5rem;
-  align-items: baseline;
-  padding: 0.6rem 0;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
-}
-
-.example-row:last-child { border-bottom: none; }
-
-.ex-nx {
-  font-family: monospace;
-  font-size: 1rem;
-  color: var(--mint);
-  font-weight: 700;
-  min-width: 180px;
-}
-
-.ex-en {
-  font-size: 0.88rem;
-  color: rgba(255,255,255,0.55);
-}
-
-/* Vocab grid */
-.vocab-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 0.75rem;
-}
-
-.vocab-tile {
-  background: white;
-  border: 2px solid var(--border);
-  border-radius: 14px;
-  padding: 1rem;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.2s;
-  user-select: none;
-}
-
-.vocab-tile:hover, .vocab-tile.flipped {
-  border-color: var(--teal);
-  background: var(--teal-light);
-  transform: scale(1.04);
-}
-
-.vocab-tile .nx {
-  font-family: monospace;
-  font-size: 1.4rem;
-  color: var(--teal);
-  font-weight: 700;
-  display: block;
-  margin-bottom: 0.3rem;
-}
-
-.vocab-tile .en {
-  font-size: 0.78rem;
-  color: var(--muted);
-  font-weight: 600;
-}
-
-.vocab-tile .emoji {
-  font-size: 1.5rem;
-  display: block;
-  margin-bottom: 0.25rem;
-}
-
-/* Tense section */
-.tense-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.tense-tile {
-  background: white;
-  border-radius: 16px;
-  padding: 1.5rem;
-  text-align: center;
-  border: 2px solid var(--border);
-}
-
-.tense-symbol {
-  font-family: monospace;
-  font-size: 2.5rem;
-  font-weight: 900;
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-.tense-tile h4 {
-  font-family: var(--display);
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--deep);
-  margin-bottom: 0.3rem;
-}
-
-.tense-tile p {
-  font-size: 0.78rem;
-  color: var(--muted);
-  line-height: 1.5;
-}
-
-/* QUIZ */
-#quiz { background: white; max-width: 100%; padding: 5rem 2rem; }
-#quiz .inner { max-width: 700px; margin: 0 auto; text-align: center; }
-
-.quiz-box {
-  background: var(--sky);
-  border-radius: 24px;
-  padding: 2.5rem 2rem;
-  border: 2px solid var(--border);
-  margin-bottom: 1.5rem;
-}
-
-.quiz-question {
-  font-family: var(--display);
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: var(--deep);
-  margin-bottom: 0.5rem;
-}
-
-.quiz-prompt {
-  font-size: 2rem;
-  font-family: monospace;
-  color: var(--teal);
-  font-weight: 700;
-  margin: 1rem 0;
-}
-
-.quiz-options {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
-  margin-top: 1.5rem;
-}
-
-.quiz-opt {
-  background: white;
-  border: 2px solid var(--border);
-  border-radius: 12px;
-  padding: 0.9rem 1rem;
-  font-family: var(--body);
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--text);
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.quiz-opt:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-1px); }
-.quiz-opt.correct { background: #d1fae5; border-color: #10b981; color: #065f46; }
-.quiz-opt.wrong { background: #fde8e8; border-color: var(--coral); color: #b91c1c; }
-
-.quiz-feedback {
-  margin-top: 1.5rem;
-  min-height: 2rem;
-  font-size: 1rem;
-  font-weight: 700;
-}
-
-.quiz-score {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  margin-top: 1rem;
-}
-
-.score-badge {
-  background: white;
-  border: 2px solid var(--border);
-  border-radius: 100px;
-  padding: 0.4rem 1.2rem;
-  font-size: 0.88rem;
-  font-weight: 700;
-  color: var(--muted);
-}
-
-/* COMPARE */
-#compare { background: var(--sky); max-width: 100%; padding: 5rem 2rem; }
-#compare .inner { max-width: 1100px; margin: 0 auto; }
-
-.compare-grid {
-  display: grid;
-  gap: 1rem;
-}
-
-.compare-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  align-items: stretch;
-}
-
-.cmp-box {
-  background: white;
-  border-radius: 16px;
-  padding: 1.5rem;
-  border: 2px solid var(--border);
-}
-
-.cmp-box.nexis-box {
-  border-color: rgba(0,180,160,0.4);
-  background: var(--teal-light);
-}
-
-.cmp-lang-tag {
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  margin-bottom: 0.75rem;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.cmp-box .cmp-lang-tag { color: var(--muted); }
-.cmp-box.nexis-box .cmp-lang-tag { color: var(--teal); }
-
-.cmp-text {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: var(--text);
-  font-weight: 600;
-}
-
-.cmp-box.nexis-box .cmp-text {
-  font-family: monospace;
-  font-size: 1.1rem;
-  color: var(--deep);
-  font-weight: 700;
-}
-
-.cmp-count {
-  margin-top: 0.75rem;
-  font-size: 0.75rem;
-  color: var(--muted);
-  font-weight: 600;
-}
-
-.saving-pill {
-  display: inline-block;
-  background: var(--teal);
-  color: white;
-  padding: 0.2rem 0.6rem;
-  border-radius: 100px;
-  font-size: 0.7rem;
-  font-weight: 800;
-  margin-left: 0.4rem;
-}
-
-/* REFERENCE */
-#reference { background: white; max-width: 100%; padding: 5rem 2rem; }
-#reference .inner { max-width: 1100px; margin: 0 auto; }
-
-.ref-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1rem;
-}
-
-.ref-card {
-  background: var(--sky);
-  border-radius: 16px;
-  padding: 1.5rem;
-  border: 2px solid var(--border);
-}
-
-.ref-card-title {
-  font-family: var(--display);
-  font-size: 1rem;
-  font-weight: 800;
-  color: var(--deep);
-  margin-bottom: 1rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 2px solid var(--border);
-}
-
-.ref-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.45rem 0;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
-  font-size: 0.85rem;
-}
-
-.ref-row:last-child { border-bottom: none; }
-
-.ref-nx { font-family: monospace; font-weight: 800; color: var(--teal); font-size: 0.95rem; }
-.ref-en { color: var(--muted); font-weight: 600; }
-
-/* FOOTER */
-footer {
-  background: var(--deep);
-  color: rgba(255,255,255,0.6);
-  text-align: center;
-  padding: 4rem 2rem 3rem;
-}
-
-.footer-logo {
-  font-family: var(--display);
-  font-size: 2.5rem;
-  font-weight: 900;
-  color: white;
-  letter-spacing: -0.04em;
-  margin-bottom: 0.75rem;
-}
-
-.footer-logo span { color: var(--teal); }
-
-.footer-mission {
-  font-size: 0.95rem;
-  color: rgba(255,255,255,0.55);
-  max-width: 500px;
-  margin: 0 auto 2rem;
-  line-height: 1.7;
-  font-weight: 500;
-}
-
-.footer-credit {
-  font-size: 0.75rem;
-  color: rgba(255,255,255,0.28);
-  margin-top: 2.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(255,255,255,0.08);
-}
-
-.footer-credit a { color: rgba(255,255,255,0.4); text-decoration: none; }
-
-/* ANIMATIONS */
-@keyframes fadeDown {
-  from { opacity: 0; transform: translateY(-16px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* AGE BANNERS */
-.age-banner {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  background: linear-gradient(135deg, #fff8e1, #fff3cd);
-  border-radius: 16px;
-  padding: 1.25rem 1.5rem;
-  margin-bottom: 2rem;
-  border: 2px solid #ffd166;
-}
-
-.age-banner .ages {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.age-pill {
-  background: var(--sun);
-  color: #7c5a00;
-  padding: 0.25rem 0.75rem;
-  border-radius: 100px;
-  font-size: 0.75rem;
-  font-weight: 800;
-}
-
-.age-text {
-  font-size: 0.88rem;
-  color: #7c5a00;
-  font-weight: 600;
-}
-
-/* AUDIO */
-.speak-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  border: none;
-  background: var(--teal-light);
-  color: var(--teal);
-  cursor: pointer;
-  font-size: 0.85rem;
-  transition: all 0.2s;
-  flex-shrink: 0;
-  vertical-align: middle;
-  margin-left: 0.4rem;
-}
-.speak-btn:hover { background: var(--teal); color: white; transform: scale(1.1); }
-.speak-btn.speaking { background: var(--teal); color: white; animation: pulse-ring 0.6s ease infinite; }
-
-@keyframes pulse-ring {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(0,180,160,0.5); }
-  50% { box-shadow: 0 0 0 6px rgba(0,180,160,0); }
-}
-
-.vocab-tile .speak-btn {
-  width: 24px; height: 24px;
-  font-size: 0.75rem;
-  margin: 0.4rem auto 0;
-  display: flex;
-}
-
-.ex-nx { position: relative; }
-
-.audio-bar {
-  background: var(--deep);
-  border-radius: 16px;
-  padding: 1.25rem 1.75rem;
-  margin-bottom: 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.audio-bar-label {
-  font-family: var(--body);
-  font-size: 0.78rem;
-  color: rgba(255,255,255,0.5);
-  font-weight: 600;
-}
-
-.voice-select {
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 8px;
-  color: white;
-  font-family: var(--body);
-  font-size: 0.78rem;
-  padding: 0.3rem 0.7rem;
-  cursor: pointer;
-}
-
-.speed-btn {
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 8px;
-  color: rgba(255,255,255,0.7);
-  font-size: 0.75rem;
-  font-weight: 700;
-  padding: 0.3rem 0.7rem;
-  cursor: pointer;
-  transition: all 0.2s;
-  font-family: var(--body);
-}
-.speed-btn.active { background: var(--teal); border-color: var(--teal); color: white; }
-
-.quiz-speak {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  background: var(--teal-light);
-  border: none;
-  border-radius: 100px;
-  color: var(--teal);
-  font-size: 0.82rem;
-  font-weight: 700;
-  padding: 0.4rem 1rem;
-  cursor: pointer;
-  margin-top: 0.5rem;
-  transition: all 0.2s;
-  font-family: var(--body);
-}
-.quiz-speak:hover { background: var(--teal); color: white; }
-
-.ref-nx { display: flex; align-items: center; gap: 0.3rem; }
-
-/* Mobile */
-@media (max-width: 640px) {
-  .nav-links { display: none; }
-  .hero-stats { gap: 1.5rem; }
-  .compare-row { grid-template-columns: 1fr; }
-  .tense-row { grid-template-columns: 1fr; }
-  .quiz-options { grid-template-columns: 1fr; }
-  .fw { display: none; }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXIS — Learn the Language of Tomorrow</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --sky: #e8f4fd;
+      --deep: #0f2a4a;
+      --teal: #00b4a0;
+      --teal-light: #e0f7f4;
+      --coral: #ff6b6b;
+      --sun: #ffd166;
+      --lavender: #a78bfa;
+      --mint: #6ee7b7;
+      --text: #1a2e44;
+      --muted: #6b7c93;
+      --white: #ffffff;
+      --card-bg: #ffffff;
+      --border: #e2ecf4;
+      --body: 'Nunito', sans-serif;
+      --display: 'Outfit', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--body);
+      color: var(--text);
+      background: var(--sky);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--display);
+      font-weight: 900;
+      font-size: 1.6rem;
+      color: var(--deep);
+      letter-spacing: -0.04em;
+    }
+
+    .nav-logo span {
+      color: var(--teal);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.25rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.88rem;
+      padding: 0.4rem 0.9rem;
+      border-radius: 20px;
+      transition: all 0.2s;
+    }
+
+    .nav-links a:hover {
+      background: var(--teal-light);
+      color: var(--teal);
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 7rem 2rem 5rem;
+      position: relative;
+      background: linear-gradient(160deg, #e8f4fd 0%, #d4f0ea 50%, #e8eafd 100%);
+      overflow: hidden;
+    }
+
+    .hero-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    .blob1 {
+      width: 500px;
+      height: 500px;
+      background: var(--teal);
+      top: -100px;
+      right: -100px;
+    }
+
+    .blob2 {
+      width: 400px;
+      height: 400px;
+      background: var(--lavender);
+      bottom: -50px;
+      left: -80px;
+    }
+
+    .blob3 {
+      width: 300px;
+      height: 300px;
+      background: var(--sun);
+      top: 40%;
+      left: 60%;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 0.4rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--teal);
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 12px rgba(0, 180, 160, 0.15);
+      animation: fadeDown 0.6s ease both;
+    }
+
+    .hero-badge::before {
+      content: '✦';
+      font-size: 0.7rem;
+    }
+
+    h1.hero-title {
+      font-family: var(--display);
+      font-size: clamp(3.5rem, 10vw, 7.5rem);
+      font-weight: 900;
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+      color: var(--deep);
+      margin-bottom: 1.5rem;
+      animation: fadeDown 0.6s 0.1s ease both;
+    }
+
+    h1.hero-title .teal {
+      color: var(--teal);
+    }
+
+    h1.hero-title .coral {
+      color: var(--coral);
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: var(--muted);
+      max-width: 600px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      animation: fadeDown 0.6s 0.2s ease both;
+      font-weight: 500;
+    }
+
+    .hero-sub strong {
+      color: var(--deep);
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeDown 0.6s 0.3s ease both;
+    }
+
+    .btn-primary {
+      background: var(--teal);
+      color: white;
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 100px;
+      font-family: var(--body);
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.2s;
+      box-shadow: 0 4px 20px rgba(0, 180, 160, 0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(0, 180, 160, 0.45);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--deep);
+      border: 2px solid var(--border);
+      padding: 0.9rem 2rem;
+      border-radius: 100px;
+      font-family: var(--body);
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--teal);
+      color: var(--teal);
+      transform: translateY(-2px);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 4rem;
+      animation: fadeDown 0.6s 0.4s ease both;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: var(--display);
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--deep);
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    /* FLOATING WORDS */
+    .float-words {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .fw {
+      position: absolute;
+      font-family: monospace;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 0.35rem 0.75rem;
+      border-radius: 100px;
+      animation: floatWord 8s ease-in-out infinite;
+      opacity: 0.6;
+    }
+
+    .fw1 {
+      background: #e0f7f4;
+      color: var(--teal);
+      top: 20%;
+      left: 8%;
+      animation-delay: 0s;
+    }
+
+    .fw2 {
+      background: #fff3cd;
+      color: #b8860b;
+      top: 35%;
+      right: 6%;
+      animation-delay: 1.5s;
+    }
+
+    .fw3 {
+      background: #fde8e8;
+      color: var(--coral);
+      top: 65%;
+      left: 5%;
+      animation-delay: 3s;
+    }
+
+    .fw4 {
+      background: #ede9fe;
+      color: var(--lavender);
+      top: 15%;
+      right: 15%;
+      animation-delay: 0.8s;
+    }
+
+    .fw5 {
+      background: #d1fae5;
+      color: #059669;
+      bottom: 25%;
+      right: 8%;
+      animation-delay: 2s;
+    }
+
+    .fw6 {
+      background: #e0f7f4;
+      color: var(--teal);
+      bottom: 30%;
+      left: 10%;
+      animation-delay: 4s;
+    }
+
+    @keyframes floatWord {
+
+      0%,
+      100% {
+        transform: translateY(0px) rotate(-1deg);
+      }
+
+      50% {
+        transform: translateY(-12px) rotate(1deg);
+      }
+    }
+
+    /* SECTION SHARED */
+    section {
+      padding: 5rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-tag {
+      display: inline-block;
+      background: var(--teal-light);
+      color: var(--teal);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 1rem;
+    }
+
+    .section-tag.coral {
+      background: #fde8e8;
+      color: var(--coral);
+    }
+
+    .section-tag.sun {
+      background: #fff8e1;
+      color: #b8860b;
+    }
+
+    .section-tag.lavender {
+      background: #ede9fe;
+      color: var(--lavender);
+    }
+
+    h2.section-title {
+      font-family: var(--display);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--deep);
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 580px;
+      line-height: 1.7;
+      margin-bottom: 3rem;
+      font-weight: 500;
+    }
+
+    /* WHY NEXIS */
+    #why {
+      background: white;
+      max-width: 100%;
+      padding: 5rem 2rem;
+    }
+
+    #why .inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .why-card {
+      background: var(--sky);
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: 2px solid transparent;
+    }
+
+    .why-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+      border-color: var(--teal-light);
+    }
+
+    .why-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .why-card h3 {
+      font-family: var(--display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--deep);
+      margin-bottom: 0.5rem;
+    }
+
+    .why-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* LESSONS */
+    #lessons {
+      background: var(--sky);
+      max-width: 100%;
+      padding: 5rem 2rem;
+    }
+
+    #lessons .inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .lesson-tabs {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .tab-btn {
+      padding: 0.55rem 1.2rem;
+      border-radius: 100px;
+      border: 2px solid var(--border);
+      background: white;
+      font-family: var(--body);
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active,
+    .tab-btn:hover {
+      background: var(--teal);
+      border-color: var(--teal);
+      color: white;
+    }
+
+    .lesson-panel {
+      display: none;
+    }
+
+    .lesson-panel.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Lesson content */
+    .lesson-intro {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      border: 2px solid var(--border);
+    }
+
+    .lesson-intro h3 {
+      font-family: var(--display);
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--deep);
+      margin-bottom: 0.75rem;
+    }
+
+    .lesson-intro p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .rule-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .rule-card {
+      background: white;
+      border-radius: 16px;
+      padding: 1.5rem;
+      border: 2px solid var(--border);
+      transition: border-color 0.2s;
+    }
+
+    .rule-card:hover {
+      border-color: var(--teal);
+    }
+
+    .rule-card .label {
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--teal);
+      margin-bottom: 0.6rem;
+    }
+
+    .rule-card h4 {
+      font-family: var(--display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--deep);
+      margin-bottom: 0.4rem;
+    }
+
+    .rule-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .example-block {
+      background: var(--deep);
+      border-radius: 16px;
+      padding: 1.5rem 2rem;
+      margin-top: 0.5rem;
+    }
+
+    .example-row {
+      display: flex;
+      gap: 1.5rem;
+      align-items: baseline;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .example-row:last-child {
+      border-bottom: none;
+    }
+
+    .ex-nx {
+      font-family: monospace;
+      font-size: 1rem;
+      color: var(--mint);
+      font-weight: 700;
+      min-width: 180px;
+    }
+
+    .ex-en {
+      font-size: 0.88rem;
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    /* Vocab grid */
+    .vocab-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .vocab-tile {
+      background: white;
+      border: 2px solid var(--border);
+      border-radius: 14px;
+      padding: 1rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      user-select: none;
+    }
+
+    .vocab-tile:hover,
+    .vocab-tile.flipped {
+      border-color: var(--teal);
+      background: var(--teal-light);
+      transform: scale(1.04);
+    }
+
+    .vocab-tile .nx {
+      font-family: monospace;
+      font-size: 1.4rem;
+      color: var(--teal);
+      font-weight: 700;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .vocab-tile .en {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .vocab-tile .emoji {
+      font-size: 1.5rem;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    /* Tense section */
+    .tense-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tense-tile {
+      background: white;
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-align: center;
+      border: 2px solid var(--border);
+    }
+
+    .tense-symbol {
+      font-family: monospace;
+      font-size: 2.5rem;
+      font-weight: 900;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .tense-tile h4 {
+      font-family: var(--display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--deep);
+      margin-bottom: 0.3rem;
+    }
+
+    .tense-tile p {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* QUIZ */
+    #quiz {
+      background: white;
+      max-width: 100%;
+      padding: 5rem 2rem;
+    }
+
+    #quiz .inner {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .quiz-box {
+      background: var(--sky);
+      border-radius: 24px;
+      padding: 2.5rem 2rem;
+      border: 2px solid var(--border);
+      margin-bottom: 1.5rem;
+    }
+
+    .quiz-question {
+      font-family: var(--display);
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--deep);
+      margin-bottom: 0.5rem;
+    }
+
+    .quiz-prompt {
+      font-size: 2rem;
+      font-family: monospace;
+      color: var(--teal);
+      font-weight: 700;
+      margin: 1rem 0;
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .quiz-opt {
+      background: white;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 0.9rem 1rem;
+      font-family: var(--body);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .quiz-opt:hover {
+      border-color: var(--teal);
+      color: var(--teal);
+      transform: translateY(-1px);
+    }
+
+    .quiz-opt.correct {
+      background: #d1fae5;
+      border-color: #10b981;
+      color: #065f46;
+    }
+
+    .quiz-opt.wrong {
+      background: #fde8e8;
+      border-color: var(--coral);
+      color: #b91c1c;
+    }
+
+    .quiz-feedback {
+      margin-top: 1.5rem;
+      min-height: 2rem;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .quiz-score {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+
+    .score-badge {
+      background: white;
+      border: 2px solid var(--border);
+      border-radius: 100px;
+      padding: 0.4rem 1.2rem;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    /* COMPARE */
+    #compare {
+      background: var(--sky);
+      max-width: 100%;
+      padding: 5rem 2rem;
+    }
+
+    #compare .inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .compare-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .compare-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .cmp-box {
+      background: white;
+      border-radius: 16px;
+      padding: 1.5rem;
+      border: 2px solid var(--border);
+    }
+
+    .cmp-box.nexis-box {
+      border-color: rgba(0, 180, 160, 0.4);
+      background: var(--teal-light);
+    }
+
+    .cmp-lang-tag {
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .cmp-box .cmp-lang-tag {
+      color: var(--muted);
+    }
+
+    .cmp-box.nexis-box .cmp-lang-tag {
+      color: var(--teal);
+    }
+
+    .cmp-text {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .cmp-box.nexis-box .cmp-text {
+      font-family: monospace;
+      font-size: 1.1rem;
+      color: var(--deep);
+      font-weight: 700;
+    }
+
+    .cmp-count {
+      margin-top: 0.75rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .saving-pill {
+      display: inline-block;
+      background: var(--teal);
+      color: white;
+      padding: 0.2rem 0.6rem;
+      border-radius: 100px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      margin-left: 0.4rem;
+    }
+
+    /* REFERENCE */
+    #reference {
+      background: white;
+      max-width: 100%;
+      padding: 5rem 2rem;
+    }
+
+    #reference .inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .ref-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .ref-card {
+      background: var(--sky);
+      border-radius: 16px;
+      padding: 1.5rem;
+      border: 2px solid var(--border);
+    }
+
+    .ref-card-title {
+      font-family: var(--display);
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--deep);
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .ref-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.45rem 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      font-size: 0.85rem;
+    }
+
+    .ref-row:last-child {
+      border-bottom: none;
+    }
+
+    .ref-nx {
+      font-family: monospace;
+      font-weight: 800;
+      color: var(--teal);
+      font-size: 0.95rem;
+    }
+
+    .ref-en {
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--deep);
+      color: rgba(255, 255, 255, 0.6);
+      text-align: center;
+      padding: 4rem 2rem 3rem;
+    }
+
+    .footer-logo {
+      font-family: var(--display);
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: white;
+      letter-spacing: -0.04em;
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-logo span {
+      color: var(--teal);
+    }
+
+    .footer-mission {
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.55);
+      max-width: 500px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+      font-weight: 500;
+    }
+
+    .footer-credit {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.28);
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .footer-credit a {
+      color: rgba(255, 255, 255, 0.4);
+      text-decoration: none;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* AGE BANNERS */
+    .age-banner {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: linear-gradient(135deg, #fff8e1, #fff3cd);
+      border-radius: 16px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2rem;
+      border: 2px solid #ffd166;
+    }
+
+    .age-banner .ages {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .age-pill {
+      background: var(--sun);
+      color: #7c5a00;
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 800;
+    }
+
+    .age-text {
+      font-size: 0.88rem;
+      color: #7c5a00;
+      font-weight: 600;
+    }
+
+    /* AUDIO */
+    .speak-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: none;
+      background: var(--teal-light);
+      color: var(--teal);
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+      flex-shrink: 0;
+      vertical-align: middle;
+      margin-left: 0.4rem;
+    }
+
+    .speak-btn:hover {
+      background: var(--teal);
+      color: white;
+      transform: scale(1.1);
+    }
+
+    .speak-btn.speaking {
+      background: var(--teal);
+      color: white;
+      animation: pulse-ring 0.6s ease infinite;
+    }
+
+    @keyframes pulse-ring {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(0, 180, 160, 0.5);
+      }
+
+      50% {
+        box-shadow: 0 0 0 6px rgba(0, 180, 160, 0);
+      }
+    }
+
+    .vocab-tile .speak-btn {
+      width: 24px;
+      height: 24px;
+      font-size: 0.75rem;
+      margin: 0.4rem auto 0;
+      display: flex;
+    }
+
+    .ex-nx {
+      position: relative;
+    }
+
+    .audio-bar {
+      background: var(--deep);
+      border-radius: 16px;
+      padding: 1.25rem 1.75rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .audio-bar-label {
+      font-family: var(--body);
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.5);
+      font-weight: 600;
+    }
+
+    .voice-select {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      color: white;
+      font-family: var(--body);
+      font-size: 0.78rem;
+      padding: 0.3rem 0.7rem;
+      cursor: pointer;
+    }
+
+    .speed-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.3rem 0.7rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: var(--body);
+    }
+
+    .speed-btn.active {
+      background: var(--teal);
+      border-color: var(--teal);
+      color: white;
+    }
+
+    .quiz-speak {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--teal-light);
+      border: none;
+      border-radius: 100px;
+      color: var(--teal);
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 0.4rem 1rem;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: all 0.2s;
+      font-family: var(--body);
+    }
+
+    .quiz-speak:hover {
+      background: var(--teal);
+      color: white;
+    }
+
+    .ref-nx {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    /* Mobile */
+    @media (max-width: 640px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-stats {
+        gap: 1.5rem;
+      }
+
+      .compare-row {
+        grid-template-columns: 1fr;
+      }
+
+      .tense-row {
+        grid-template-columns: 1fr;
+      }
+
+      .quiz-options {
+        grid-template-columns: 1fr;
+      }
+
+      .fw {
+        display: none;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">NEX<span>IS</span></div>
-  <ul class="nav-links">
-    <li><a href="#why">Why NEXIS</a></li>
-    <li><a href="#lessons">Lessons</a></li>
-    <li><a href="#pronunciation">Listen</a></li>
-    <li><a href="#quiz">Quiz</a></li>
-    <li><a href="#compare">Compare</a></li>
-    <li><a href="#reference">Reference</a></li>
-  </ul>
-</nav>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">NEX<span>IS</span></div>
+    <ul class="nav-links">
+      <li><a href="#why">Why NEXIS</a></li>
+      <li><a href="#lessons">Lessons</a></li>
+      <li><a href="#pronunciation">Listen</a></li>
+      <li><a href="#quiz">Quiz</a></li>
+      <li><a href="#compare">Compare</a></li>
+      <li><a href="#reference">Reference</a></li>
+    </ul>
+  </nav>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="float-words">
-    <div class="fw fw1">mi + hap 😊</div>
-    <div class="fw fw2">yu bon?</div>
-    <div class="fw fw3">fas!</div>
-    <div class="fw fw4">wi + lern</div>
-    <div class="fw fw5">hap-tim!</div>
-    <div class="fw fw6">– go lo</div>
-  </div>
-  <div class="hero-blob blob1"></div>
-  <div class="hero-blob blob2"></div>
-  <div class="hero-blob blob3"></div>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="float-words">
+      <div class="fw fw1">mi + hap 😊</div>
+      <div class="fw fw2">yu bon?</div>
+      <div class="fw fw3">fas!</div>
+      <div class="fw fw4">wi + lern</div>
+      <div class="fw fw5">hap-tim!</div>
+      <div class="fw fw6">– go lo</div>
+    </div>
+    <div class="hero-blob blob1"></div>
+    <div class="hero-blob blob2"></div>
+    <div class="hero-blob blob3"></div>
 
-  <div class="hero-badge">A New Language for All of Humanity</div>
-  <h1 class="hero-title">Speak<br><span class="teal">Smarter.</span><br><span class="coral">Faster.</span></h1>
-  <p class="hero-sub">
-    <strong>NEXIS</strong> is a constructed language designed to enhance human communication —
-    stripping out everything redundant, keeping only what matters.
-    Built for kids, adults, and everyone in between.
-  </p>
-  <div class="hero-cta">
-    <a href="#lessons" class="btn-primary">Start Learning Free →</a>
-    <a href="#why" class="btn-secondary">Why NEXIS?</a>
-  </div>
-  <div class="hero-stats">
-    <div class="stat"><span class="stat-num">~60%</span><span class="stat-label">Shorter sentences</span></div>
-    <div class="stat"><span class="stat-num">200</span><span class="stat-label">Core words</span></div>
-    <div class="stat"><span class="stat-num">∀</span><span class="stat-label">All ages welcome</span></div>
-  </div>
-</div>
-
-<!-- WHY NEXIS -->
-<div id="why" style="background:white; padding: 5rem 2rem;">
-<section style="max-width:1100px; margin:0 auto; padding:0;">
-  <div class="reveal">
-    <div class="section-tag">Our Mission</div>
-    <h2 class="section-title">Why we built NEXIS</h2>
-    <p class="section-desc">
-      Human language is beautiful — but it's also full of habits, filler, and inefficiencies we never questioned.
-      NEXIS doesn't replace your language. It <strong>sharpens</strong> it.
-      Think of it as a tool that makes communication cleaner, faster, and more universal.
+    <div class="hero-badge">A New Language for All of Humanity</div>
+    <h1 class="hero-title">Speak<br><span class="teal">Smarter.</span><br><span class="coral">Faster.</span></h1>
+    <p class="hero-sub">
+      <strong>NEXIS</strong> is a constructed language designed to enhance human communication —
+      stripping out everything redundant, keeping only what matters.
+      Built for kids, adults, and everyone in between.
     </p>
-  </div>
-  <div class="why-grid reveal">
-    <div class="why-card">
-      <span class="why-icon">🧠</span>
-      <h3>Inspired by AI</h3>
-      <p>When AI systems communicate with each other, they naturally strip language down to pure meaning. NEXIS applies that insight — but keeps it fully human-friendly.</p>
+    <div class="hero-cta">
+      <a href="#lessons" class="btn-primary">Start Learning Free →</a>
+      <a href="#why" class="btn-secondary">Why NEXIS?</a>
     </div>
-    <div class="why-card">
-      <span class="why-icon">⚡</span>
-      <h3>Up to 60% Faster</h3>
-      <p>By eliminating articles, redundant verb forms, and filler words, NEXIS sentences are dramatically shorter without losing any meaning.</p>
-    </div>
-    <div class="why-card">
-      <span class="why-icon">🌍</span>
-      <h3>Universal by Design</h3>
-      <p>No irregular verbs. No gendered nouns. No confusing spelling rules. NEXIS is built to be equally easy for speakers of any native language.</p>
-    </div>
-    <div class="why-card">
-      <span class="why-icon">🧒</span>
-      <h3>For All Ages</h3>
-      <p>A 7-year-old can learn the basics in one afternoon. Adults will master it in days. The simplicity is the point — and the power.</p>
-    </div>
-    <div class="why-card">
-      <span class="why-icon">🔧</span>
-      <h3>Enhances, Not Replaces</h3>
-      <p>NEXIS isn't here to replace English or any other language. It's an additional tool — like shorthand was for writers, or notation is for musicians.</p>
-    </div>
-    <div class="why-card">
-      <span class="why-icon">🚀</span>
-      <h3>Alive & Growing</h3>
-      <p>NEXIS is open. As more people use it, it grows. New compound words emerge. New speakers shape its future. It belongs to everyone.</p>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">~60%</span><span class="stat-label">Shorter sentences</span></div>
+      <div class="stat"><span class="stat-num">200</span><span class="stat-label">Core words</span></div>
+      <div class="stat"><span class="stat-num">∀</span><span class="stat-label">All ages welcome</span></div>
     </div>
   </div>
-</section>
-</div>
 
-<!-- LESSONS -->
-<div id="lessons" style="background: var(--sky); padding: 5rem 2rem;">
-<section style="max-width:1100px; margin:0 auto; padding:0;">
-  <div class="reveal">
-    <div class="age-banner">
-      <div class="ages">
-        <span class="age-pill">👶 Ages 6+</span>
-        <span class="age-pill">🧑 Teens</span>
-        <span class="age-pill">👩 Adults</span>
-        <span class="age-pill">👴 Seniors</span>
+  <!-- WHY NEXIS -->
+  <div id="why" style="background:white; padding: 5rem 2rem;">
+    <section style="max-width:1100px; margin:0 auto; padding:0;">
+      <div class="reveal">
+        <div class="section-tag">Our Mission</div>
+        <h2 class="section-title">Why we built NEXIS</h2>
+        <p class="section-desc">
+          Human language is beautiful — but it's also full of habits, filler, and inefficiencies we never questioned.
+          NEXIS doesn't replace your language. It <strong>sharpens</strong> it.
+          Think of it as a tool that makes communication cleaner, faster, and more universal.
+        </p>
       </div>
-      <div class="age-text">All lessons are designed to be fun and accessible for every age group.</div>
-    </div>
-    <div class="section-tag coral">Interactive Lessons</div>
-    <h2 class="section-title">Learn NEXIS step by step</h2>
-    <p class="section-desc">Pick a lesson below. Start at Lesson 1 or jump to what interests you most.</p>
-  </div>
-
-  <div class="lesson-tabs reveal">
-    <button class="tab-btn active" onclick="showLesson(0)">1 · First Words</button>
-    <button class="tab-btn" onclick="showLesson(1)">2 · Pronouns</button>
-    <button class="tab-btn" onclick="showLesson(2)">3 · Tense & Time</button>
-    <button class="tab-btn" onclick="showLesson(3)">4 · Intensity</button>
-    <button class="tab-btn" onclick="showLesson(4)">5 · Full Sentences</button>
-  </div>
-
-  <!-- LESSON 1 -->
-  <div class="lesson-panel active" id="lesson-0">
-    <div class="lesson-intro">
-      <h3>🌱 Lesson 1: Your First NEXIS Words</h3>
-      <p>NEXIS keeps words short — most are just 2–3 letters. Tap any word card to see its meaning. These 20 words will get you through most basic conversations!</p>
-    </div>
-    <div class="vocab-grid">
-      <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">👋</span><span class="nx">hap-tim</span><span class="en">hello</span></div>
-      <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">👋</span><span class="nx">slo go</span><span class="en">goodbye</span></div>
-      <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">✅</span><span class="nx">ya</span><span class="en">yes</span></div>
-      <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">❌</span><span class="nx">no</span><span class="en">no / not</span></div>
-      <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">👍</span><span class="nx">ok</span><span class="en">okay</span></div>
-      <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">😊</span><span class="nx">hap</span><span class="en">happy</span></div>
-      <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">😞</span><span class="nx">bad</span><span class="en">bad / sad</span></div>
-      <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">✨</span><span class="nx">bon</span><span class="en">good</span></div>
-      <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">🍕</span><span class="nx">et</span><span class="en">eat / food</span></div>
-      <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">💧</span><span class="nx">dri</span><span class="en">drink</span></div>
-      <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">😴</span><span class="nx">sle</span><span class="en">sleep</span></div>
-      <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">🏃</span><span class="nx">go</span><span class="en">go</span></div>
-      <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">🏠</span><span class="nx">lo</span><span class="en">place / here</span></div>
-      <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">🕐</span><span class="nx">tim</span><span class="en">time</span></div>
-      <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">💪</span><span class="nx">don</span><span class="en">do / make</span></div>
-      <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">❤️</span><span class="nx">lov</span><span class="en">love</span></div>
-      <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">🆘</span><span class="nx">ayd</span><span class="en">help</span></div>
-      <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">👁️</span><span class="nx">si</span><span class="en">see / look</span></div>
-      <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">💬</span><span class="nx">se</span><span class="en">say / speak</span></div>
-      <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">🙏</span><span class="nx">bon-don</span><span class="en">thank you</span></div>
-    </div>
-  </div>
-
-  <!-- LESSON 2 -->
-  <div class="lesson-panel" id="lesson-1">
-    <div class="lesson-intro">
-      <h3>🙋 Lesson 2: Pronouns — Who is talking?</h3>
-      <p>NEXIS has just 4 pronouns. That's it. No "he/she/it/him/her/his/hers" — just one word for each concept. This alone saves enormous time.</p>
-    </div>
-    <div class="rule-cards">
-      <div class="rule-card"><div class="label">First person</div><h4>mi = I / me / my</h4><p>Used for yourself in any position. "mi go" = I go. "fo mi" = for me. "mi bon" = I am good.</p></div>
-      <div class="rule-card"><div class="label">Second person</div><h4>yu = you / your</h4><p>"yu hap?" = are you happy? "fo yu" = for you. "yu bon" = you are good.</p></div>
-      <div class="rule-card"><div class="label">Third person</div><h4>da = they / them / their</h4><p>Gender-neutral by default. "da go" = they go. "fo da" = for them. One word, no confusion.</p></div>
-      <div class="rule-card"><div class="label">First plural</div><h4>wi = we / us / our</h4><p>"wi et" = we eat. "fo wi" = for us. "wi bon" = we are good.</p></div>
-    </div>
-    <div class="example-block">
-      <div class="example-row"><span class="ex-nx">mi hap-tim yu</span><span class="ex-en">I greet you (hello to you)</span></div>
-      <div class="example-row"><span class="ex-nx">wi + lov da</span><span class="ex-en">We really love them</span></div>
-      <div class="example-row"><span class="ex-nx">yu bon?</span><span class="ex-en">Are you good / how are you?</span></div>
-      <div class="example-row"><span class="ex-nx">da no se mi</span><span class="ex-en">They didn't say (anything to) me</span></div>
-    </div>
-  </div>
-
-  <!-- LESSON 3 -->
-  <div class="lesson-panel" id="lesson-2">
-    <div class="lesson-intro">
-      <h3>⏰ Lesson 3: Tense & Time — Past, Present, Future</h3>
-      <p>In English you change the verb: "go / went / will go." In NEXIS, the verb <strong>never changes</strong>. Instead, place one tiny marker before it.</p>
-    </div>
-    <div class="tense-row">
-      <div class="tense-tile" style="border-color:#e2ecf4">
-        <span class="tense-symbol" style="color:var(--muted)">–</span>
-        <h4>Past</h4>
-        <p>mi <strong>–</strong> go<br><span style="color:#bbb">I went</span></p>
-      </div>
-      <div class="tense-tile" style="border-color:var(--teal); background:var(--teal-light)">
-        <span class="tense-symbol" style="color:var(--teal)">∅</span>
-        <h4>Present (no marker)</h4>
-        <p>mi go<br><span style="color:var(--muted)">I go / I am going</span></p>
-      </div>
-      <div class="tense-tile" style="border-color:#fde8e8">
-        <span class="tense-symbol" style="color:var(--coral)">+</span>
-        <h4>Future</h4>
-        <p>mi <strong>+</strong> go<br><span style="color:#bbb">I will go</span></p>
-      </div>
-    </div>
-    <div class="example-block">
-      <div class="example-row"><span class="ex-nx">mi – et pre-tim</span><span class="ex-en">I ate earlier / yesterday</span></div>
-      <div class="example-row"><span class="ex-nx">da + ke nau</span><span class="ex-en">They will arrive soon</span></div>
-      <div class="example-row"><span class="ex-nx">wi – don bon wok</span><span class="ex-en">We did good work</span></div>
-      <div class="example-row"><span class="ex-nx">yu + sle pos?</span><span class="ex-en">Will you sleep later?</span></div>
-    </div>
-  </div>
-
-  <!-- LESSON 4 -->
-  <div class="lesson-panel" id="lesson-3">
-    <div class="lesson-intro">
-      <h3>⚡ Lesson 4: Intensity — Say More With Less</h3>
-      <p>Instead of "very", "really", "extremely", "a little bit" — NEXIS uses one-symbol modifiers placed before any word. This is one of NEXIS's most powerful features.</p>
-    </div>
-    <div class="rule-cards">
-      <div class="rule-card"><div class="label">Extreme</div><h4>++ = extremely</h4><p>"mi ++ hap" = I am extremely happy. "++ fas!" = incredibly fast / emergency!</p></div>
-      <div class="rule-card"><div class="label">High</div><h4>+ = very / really</h4><p>"yu + bon" = you are really good. "mi + wan et" = I really want to eat.</p></div>
-      <div class="rule-card"><div class="label">Slight</div><h4>~ = a little / somewhat</h4><p>"mi ~ sle" = I'm a little tired. "da ~ bad" = they're somewhat wrong.</p></div>
-      <div class="rule-card"><div class="label">Question</div><h4>? = question (end)</h4><p>Place at the end: "yu + hap?" = are you very happy? Any sentence becomes a question with ?</p></div>
-    </div>
-    <div class="example-block">
-      <div class="example-row"><span class="ex-nx">mi ++ lov yu</span><span class="ex-en">I love you extremely much</span></div>
-      <div class="example-row"><span class="ex-nx">da ~ bon</span><span class="ex-en">They are somewhat good / okay-ish</span></div>
-      <div class="example-row"><span class="ex-nx">wi + nid ayd nau</span><span class="ex-en">We really need help right now</span></div>
-      <div class="example-row"><span class="ex-nx">yu ~ sle?</span><span class="ex-en">Are you a little tired?</span></div>
-    </div>
-  </div>
-
-  <!-- LESSON 5 -->
-  <div class="lesson-panel" id="lesson-4">
-    <div class="lesson-intro">
-      <h3>🗣️ Lesson 5: Full Sentences — Putting It Together</h3>
-      <p>NEXIS word order is always: <strong>Subject → Verb → Object</strong>. Never changes. This removes almost all ambiguity. Add tense markers and intensity and you can express nearly anything.</p>
-    </div>
-    <div class="rule-cards">
-      <div class="rule-card"><div class="label">Rule</div><h4>Subject first</h4><p>Who is doing the action. Always first: "mi", "yu", "da", "wi" or a noun.</p></div>
-      <div class="rule-card"><div class="label">Rule</div><h4>Verb second</h4><p>What is happening. Add tense marker before if needed: "go", "+ go", "– go".</p></div>
-      <div class="rule-card"><div class="label">Rule</div><h4>Object third</h4><p>Who or what the action affects. "mi go lo" = I go (to) place. "mi et bon" = I eat good (food).</p></div>
-      <div class="rule-card"><div class="label">Compounds</div><h4>Join roots with –</h4><p>"hap-tim" = hello. "pos-tim" = later. "he-bad" = sick. Build any concept from the core words.</p></div>
-    </div>
-    <div class="example-block">
-      <div class="example-row"><span class="ex-nx">mi + wan et. yu hap et?</span><span class="ex-en">I really want to eat. Are you happy to eat? (hungry?)</span></div>
-      <div class="example-row"><span class="ex-nx">wi – don + bon wok pre-tim</span><span class="ex-en">We did very good work earlier / yesterday</span></div>
-      <div class="example-row"><span class="ex-nx">yu + ayd mi lern hau don wo?</span><span class="ex-en">Can you help me learn how to do this?</span></div>
-      <div class="example-row"><span class="ex-nx">da – no ke. mi ~ bad fo da.</span><span class="ex-en">They didn't come. I feel a little bad for them.</span></div>
-      <div class="example-row"><span class="ex-nx">mi ++ lov wi lo.</span><span class="ex-en">I love our place extremely much.</span></div>
-    </div>
-  </div>
-</section>
-</div>
-
-<!-- PRONUNCIATION -->
-<div id="pronunciation" style="background:white; padding: 5rem 2rem;">
-<section style="max-width:1100px; margin:0 auto; padding:0;">
-  <div class="reveal">
-    <div class="section-tag" style="background:#ede9fe;color:var(--lavender);">🔊 Listen & Learn</div>
-    <h2 class="section-title">Pronunciation Guide</h2>
-    <p class="section-desc">Every word in NEXIS is spelled exactly how it sounds. Tap any 🔊 button to hear it spoken aloud. Use the speed controls to slow it down for learning.</p>
-  </div>
-
-  <div class="reveal" style="background:var(--deep); border-radius:20px; padding:1.5rem 2rem; margin-bottom:2rem; display:flex; align-items:center; gap:1rem; flex-wrap:wrap;">
-    <span style="font-family:var(--body); font-size:0.82rem; color:rgba(255,255,255,0.55); font-weight:600;">🔊 Playback Speed:</span>
-    <button class="speed-btn" onclick="setSpeed(0.55,this)">🐢 Slow</button>
-    <button class="speed-btn active" onclick="setSpeed(0.82,this)">🚶 Normal</button>
-    <button class="speed-btn" onclick="setSpeed(1.1,this)">🏃 Fast</button>
-    <span style="font-family:var(--body); font-size:0.75rem; color:rgba(255,255,255,0.3); margin-left:auto;">Tap any 🔊 anywhere on the page</span>
-  </div>
-
-  <div class="reveal" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1.5rem;">
-
-    <div style="background:var(--sky); border-radius:16px; padding:1.5rem; border:2px solid var(--border);">
-      <div style="font-family:var(--display); font-size:1rem; font-weight:800; color:var(--deep); margin-bottom:1rem; padding-bottom:0.75rem; border-bottom:2px solid var(--border);">👋 Greetings</div>
-      <div style="display:flex; flex-direction:column; gap:0.6rem;">
-        <div style="display:flex; justify-content:space-between; align-items:center; background:white; border-radius:10px; padding:0.75rem 1rem;">
-          <div><span style="font-family:monospace; font-weight:800; color:var(--teal); font-size:1rem;">hap-tim</span><br><span style="font-size:0.75rem; color:var(--muted);">hello</span></div>
-          <button class="speak-btn" data-text="hap tim" style="width:34px;height:34px;font-size:1rem;">🔊</button>
+      <div class="why-grid reveal">
+        <div class="why-card">
+          <span class="why-icon">🧠</span>
+          <h3>Inspired by AI</h3>
+          <p>When AI systems communicate with each other, they naturally strip language down to pure meaning. NEXIS
+            applies that insight — but keeps it fully human-friendly.</p>
         </div>
-        <div style="display:flex; justify-content:space-between; align-items:center; background:white; border-radius:10px; padding:0.75rem 1rem;">
-          <div><span style="font-family:monospace; font-weight:800; color:var(--teal); font-size:1rem;">slo go</span><br><span style="font-size:0.75rem; color:var(--muted);">goodbye</span></div>
-          <button class="speak-btn" data-text="slo go" style="width:34px;height:34px;font-size:1rem;">🔊</button>
+        <div class="why-card">
+          <span class="why-icon">⚡</span>
+          <h3>Up to 60% Faster</h3>
+          <p>By eliminating articles, redundant verb forms, and filler words, NEXIS sentences are dramatically shorter
+            without losing any meaning.</p>
         </div>
-        <div style="display:flex; justify-content:space-between; align-items:center; background:white; border-radius:10px; padding:0.75rem 1rem;">
-          <div><span style="font-family:monospace; font-weight:800; color:var(--teal); font-size:1rem;">bon-don</span><br><span style="font-size:0.75rem; color:var(--muted);">thank you</span></div>
-          <button class="speak-btn" data-text="bon don" style="width:34px;height:34px;font-size:1rem;">🔊</button>
+        <div class="why-card">
+          <span class="why-icon">🌍</span>
+          <h3>Universal by Design</h3>
+          <p>No irregular verbs. No gendered nouns. No confusing spelling rules. NEXIS is built to be equally easy for
+            speakers of any native language.</p>
         </div>
-        <div style="display:flex; justify-content:space-between; align-items:center; background:white; border-radius:10px; padding:0.75rem 1rem;">
-          <div><span style="font-family:monospace; font-weight:800; color:var(--teal); font-size:1rem;">yu bon?</span><br><span style="font-size:0.75rem; color:var(--muted);">how are you?</span></div>
-          <button class="speak-btn" data-text="yu bon?" style="width:34px;height:34px;font-size:1rem;">🔊</button>
+        <div class="why-card">
+          <span class="why-icon">🧒</span>
+          <h3>For All Ages</h3>
+          <p>A 7-year-old can learn the basics in one afternoon. Adults will master it in days. The simplicity is the
+            point — and the power.</p>
+        </div>
+        <div class="why-card">
+          <span class="why-icon">🔧</span>
+          <h3>Enhances, Not Replaces</h3>
+          <p>NEXIS isn't here to replace English or any other language. It's an additional tool — like shorthand was for
+            writers, or notation is for musicians.</p>
+        </div>
+        <div class="why-card">
+          <span class="why-icon">🚀</span>
+          <h3>Alive & Growing</h3>
+          <p>NEXIS is open. As more people use it, it grows. New compound words emerge. New speakers shape its future.
+            It belongs to everyone.</p>
         </div>
       </div>
-    </div>
+    </section>
+  </div>
 
-    <div style="background:var(--sky); border-radius:16px; padding:1.5rem; border:2px solid var(--border);">
-      <div style="font-family:var(--display); font-size:1rem; font-weight:800; color:var(--deep); margin-bottom:1rem; padding-bottom:0.75rem; border-bottom:2px solid var(--border);">⚡ Common Phrases</div>
-      <div style="display:flex; flex-direction:column; gap:0.6rem;">
-        <div style="display:flex; justify-content:space-between; align-items:center; background:white; border-radius:10px; padding:0.75rem 1rem;">
-          <div><span style="font-family:monospace; font-weight:800; color:var(--teal); font-size:1rem;">mi nid ayd</span><br><span style="font-size:0.75rem; color:var(--muted);">I need help</span></div>
-          <button class="speak-btn" data-text="mi nid ayd" style="width:34px;height:34px;font-size:1rem;">🔊</button>
+  <!-- LESSONS -->
+  <div id="lessons" style="background: var(--sky); padding: 5rem 2rem;">
+    <section style="max-width:1100px; margin:0 auto; padding:0;">
+      <div class="reveal">
+        <div class="age-banner">
+          <div class="ages">
+            <span class="age-pill">👶 Ages 6+</span>
+            <span class="age-pill">🧑 Teens</span>
+            <span class="age-pill">👩 Adults</span>
+            <span class="age-pill">👴 Seniors</span>
+          </div>
+          <div class="age-text">All lessons are designed to be fun and accessible for every age group.</div>
         </div>
-        <div style="display:flex; justify-content:space-between; align-items:center; background:white; border-radius:10px; padding:0.75rem 1rem;">
-          <div><span style="font-family:monospace; font-weight:800; color:var(--teal); font-size:1rem;">mi no lern</span><br><span style="font-size:0.75rem; color:var(--muted);">I don't understand</span></div>
-          <button class="speak-btn" data-text="mi no lern" style="width:34px;height:34px;font-size:1rem;">🔊</button>
+        <div class="section-tag coral">Interactive Lessons</div>
+        <h2 class="section-title">Learn NEXIS step by step</h2>
+        <p class="section-desc">Pick a lesson below. Start at Lesson 1 or jump to what interests you most.</p>
+      </div>
+
+      <div class="lesson-tabs reveal">
+        <button class="tab-btn active" onclick="showLesson(0)">1 · First Words</button>
+        <button class="tab-btn" onclick="showLesson(1)">2 · Pronouns</button>
+        <button class="tab-btn" onclick="showLesson(2)">3 · Tense & Time</button>
+        <button class="tab-btn" onclick="showLesson(3)">4 · Intensity</button>
+        <button class="tab-btn" onclick="showLesson(4)">5 · Full Sentences</button>
+      </div>
+
+      <!-- LESSON 1 -->
+      <div class="lesson-panel active" id="lesson-0">
+        <div class="lesson-intro">
+          <h3>🌱 Lesson 1: Your First NEXIS Words</h3>
+          <p>NEXIS keeps words short — most are just 2–3 letters. Tap any word card to see its meaning. These 20 words
+            will get you through most basic conversations!</p>
         </div>
-        <div style="display:flex; justify-content:space-between; align-items:center; background:white; border-radius:10px; padding:0.75rem 1rem;">
-          <div><span style="font-family:monospace; font-weight:800; color:var(--teal); font-size:1rem;">wi + don!</span><br><span style="font-size:0.75rem; color:var(--muted);">we will definitely do it!</span></div>
-          <button class="speak-btn" data-text="wi don!" style="width:34px;height:34px;font-size:1rem;">🔊</button>
-        </div>
-        <div style="display:flex; justify-content:space-between; align-items:center; background:white; border-radius:10px; padding:0.75rem 1rem;">
-          <div><span style="font-family:monospace; font-weight:800; color:var(--teal); font-size:1rem;">mi ++ lov yu</span><br><span style="font-size:0.75rem; color:var(--muted);">I love you extremely</span></div>
-          <button class="speak-btn" data-text="mi extremely lov yu" style="width:34px;height:34px;font-size:1rem;">🔊</button>
+        <div class="vocab-grid">
+          <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">👋</span><span
+              class="nx">hap-tim</span><span class="en">hello</span></div>
+          <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">👋</span><span
+              class="nx">slo go</span><span class="en">goodbye</span></div>
+          <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">✅</span><span
+              class="nx">ya</span><span class="en">yes</span></div>
+          <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">❌</span><span
+              class="nx">no</span><span class="en">no / not</span></div>
+          <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">👍</span><span
+              class="nx">ok</span><span class="en">okay</span></div>
+          <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">😊</span><span
+              class="nx">hap</span><span class="en">happy</span></div>
+          <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">😞</span><span
+              class="nx">bad</span><span class="en">bad / sad</span></div>
+          <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">✨</span><span
+              class="nx">bon</span><span class="en">good</span></div>
+          <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">🍕</span><span
+              class="nx">et</span><span class="en">eat / food</span></div>
+          <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">💧</span><span
+              class="nx">dri</span><span class="en">drink</span></div>
+          <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">😴</span><span
+              class="nx">sle</span><span class="en">sleep</span></div>
+          <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">🏃</span><span
+              class="nx">go</span><span class="en">go</span></div>
+          <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">🏠</span><span
+              class="nx">lo</span><span class="en">place / here</span></div>
+          <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">🕐</span><span
+              class="nx">tim</span><span class="en">time</span></div>
+          <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">💪</span><span
+              class="nx">don</span><span class="en">do / make</span></div>
+          <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">❤️</span><span
+              class="nx">lov</span><span class="en">love</span></div>
+          <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">🆘</span><span
+              class="nx">ayd</span><span class="en">help</span></div>
+          <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">👁️</span><span
+              class="nx">si</span><span class="en">see / look</span></div>
+          <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">💬</span><span
+              class="nx">se</span><span class="en">say / speak</span></div>
+          <div class="vocab-tile" onclick="this.classList.toggle('flipped')"><span class="emoji">🙏</span><span
+              class="nx">bon-don</span><span class="en">thank you</span></div>
         </div>
       </div>
-    </div>
 
-    <div style="background:var(--sky); border-radius:16px; padding:1.5rem; border:2px solid var(--border);">
-      <div style="font-family:var(--display); font-size:1rem; font-weight:800; color:var(--deep); margin-bottom:1rem; padding-bottom:0.75rem; border-bottom:2px solid var(--border);">🌟 Full Sentences</div>
-      <div style="display:flex; flex-direction:column; gap:0.6rem;">
-        <div style="display:flex; justify-content:space-between; align-items:center; background:white; border-radius:10px; padding:0.75rem 1rem;">
-          <div><span style="font-family:monospace; font-weight:800; color:var(--teal); font-size:0.9rem;">mi + wan et. yu hap et?</span><br><span style="font-size:0.75rem; color:var(--muted);">I want to eat. Are you hungry?</span></div>
-          <button class="speak-btn" data-text="mi wan et. yu hap et?" style="width:34px;height:34px;font-size:1rem;">🔊</button>
+      <!-- LESSON 2 -->
+      <div class="lesson-panel" id="lesson-1">
+        <div class="lesson-intro">
+          <h3>🙋 Lesson 2: Pronouns — Who is talking?</h3>
+          <p>NEXIS has just 4 pronouns. That's it. No "he/she/it/him/her/his/hers" — just one word for each concept.
+            This alone saves enormous time.</p>
         </div>
-        <div style="display:flex; justify-content:space-between; align-items:center; background:white; border-radius:10px; padding:0.75rem 1rem;">
-          <div><span style="font-family:monospace; font-weight:800; color:var(--teal); font-size:0.9rem;">wi – don bon wok</span><br><span style="font-size:0.75rem; color:var(--muted);">We did good work</span></div>
-          <button class="speak-btn" data-text="wi don bon wok" style="width:34px;height:34px;font-size:1rem;">🔊</button>
+        <div class="rule-cards">
+          <div class="rule-card">
+            <div class="label">First person</div>
+            <h4>mi = I / me / my</h4>
+            <p>Used for yourself in any position. "mi go" = I go. "fo mi" = for me. "mi bon" = I am good.</p>
+          </div>
+          <div class="rule-card">
+            <div class="label">Second person</div>
+            <h4>yu = you / your</h4>
+            <p>"yu hap?" = are you happy? "fo yu" = for you. "yu bon" = you are good.</p>
+          </div>
+          <div class="rule-card">
+            <div class="label">Third person</div>
+            <h4>da = they / them / their</h4>
+            <p>Gender-neutral by default. "da go" = they go. "fo da" = for them. One word, no confusion.</p>
+          </div>
+          <div class="rule-card">
+            <div class="label">First plural</div>
+            <h4>wi = we / us / our</h4>
+            <p>"wi et" = we eat. "fo wi" = for us. "wi bon" = we are good.</p>
+          </div>
         </div>
-        <div style="display:flex; justify-content:space-between; align-items:center; background:white; border-radius:10px; padding:0.75rem 1rem;">
-          <div><span style="font-family:monospace; font-weight:800; color:var(--teal); font-size:0.9rem;">da + ke pos-tim</span><br><span style="font-size:0.75rem; color:var(--muted);">They will come later</span></div>
-          <button class="speak-btn" data-text="da ke pos tim" style="width:34px;height:34px;font-size:1rem;">🔊</button>
-        </div>
-        <div style="display:flex; justify-content:space-between; align-items:center; background:white; border-radius:10px; padding:0.75rem 1rem;">
-          <div><span style="font-family:monospace; font-weight:800; color:var(--teal); font-size:0.9rem;">yu ayd mi lern hau don?</span><br><span style="font-size:0.75rem; color:var(--muted);">Can you help me learn how to do this?</span></div>
-          <button class="speak-btn" data-text="yu ayd mi lern hau don?" style="width:34px;height:34px;font-size:1rem;">🔊</button>
+        <div class="example-block">
+          <div class="example-row"><span class="ex-nx">mi hap-tim yu</span><span class="ex-en">I greet you (hello to
+              you)</span></div>
+          <div class="example-row"><span class="ex-nx">wi + lov da</span><span class="ex-en">We really love them</span>
+          </div>
+          <div class="example-row"><span class="ex-nx">yu bon?</span><span class="ex-en">Are you good / how are
+              you?</span></div>
+          <div class="example-row"><span class="ex-nx">da no se mi</span><span class="ex-en">They didn't say (anything
+              to) me</span></div>
         </div>
       </div>
-    </div>
 
+      <!-- LESSON 3 -->
+      <div class="lesson-panel" id="lesson-2">
+        <div class="lesson-intro">
+          <h3>⏰ Lesson 3: Tense & Time — Past, Present, Future</h3>
+          <p>In English you change the verb: "go / went / will go." In NEXIS, the verb <strong>never changes</strong>.
+            Instead, place one tiny marker before it.</p>
+        </div>
+        <div class="tense-row">
+          <div class="tense-tile" style="border-color:#e2ecf4">
+            <span class="tense-symbol" style="color:var(--muted)">–</span>
+            <h4>Past</h4>
+            <p>mi <strong>–</strong> go<br><span style="color:#bbb">I went</span></p>
+          </div>
+          <div class="tense-tile" style="border-color:var(--teal); background:var(--teal-light)">
+            <span class="tense-symbol" style="color:var(--teal)">∅</span>
+            <h4>Present (no marker)</h4>
+            <p>mi go<br><span style="color:var(--muted)">I go / I am going</span></p>
+          </div>
+          <div class="tense-tile" style="border-color:#fde8e8">
+            <span class="tense-symbol" style="color:var(--coral)">+</span>
+            <h4>Future</h4>
+            <p>mi <strong>+</strong> go<br><span style="color:#bbb">I will go</span></p>
+          </div>
+        </div>
+        <div class="example-block">
+          <div class="example-row"><span class="ex-nx">mi – et pre-tim</span><span class="ex-en">I ate earlier /
+              yesterday</span></div>
+          <div class="example-row"><span class="ex-nx">da + ke nau</span><span class="ex-en">They will arrive
+              soon</span></div>
+          <div class="example-row"><span class="ex-nx">wi – don bon wok</span><span class="ex-en">We did good
+              work</span></div>
+          <div class="example-row"><span class="ex-nx">yu + sle pos?</span><span class="ex-en">Will you sleep
+              later?</span></div>
+        </div>
+      </div>
+
+      <!-- LESSON 4 -->
+      <div class="lesson-panel" id="lesson-3">
+        <div class="lesson-intro">
+          <h3>⚡ Lesson 4: Intensity — Say More With Less</h3>
+          <p>Instead of "very", "really", "extremely", "a little bit" — NEXIS uses one-symbol modifiers placed before
+            any word. This is one of NEXIS's most powerful features.</p>
+        </div>
+        <div class="rule-cards">
+          <div class="rule-card">
+            <div class="label">Extreme</div>
+            <h4>++ = extremely</h4>
+            <p>"mi ++ hap" = I am extremely happy. "++ fas!" = incredibly fast / emergency!</p>
+          </div>
+          <div class="rule-card">
+            <div class="label">High</div>
+            <h4>+ = very / really</h4>
+            <p>"yu + bon" = you are really good. "mi + wan et" = I really want to eat.</p>
+          </div>
+          <div class="rule-card">
+            <div class="label">Slight</div>
+            <h4>~ = a little / somewhat</h4>
+            <p>"mi ~ sle" = I'm a little tired. "da ~ bad" = they're somewhat wrong.</p>
+          </div>
+          <div class="rule-card">
+            <div class="label">Question</div>
+            <h4>? = question (end)</h4>
+            <p>Place at the end: "yu + hap?" = are you very happy? Any sentence becomes a question with ?</p>
+          </div>
+        </div>
+        <div class="example-block">
+          <div class="example-row"><span class="ex-nx">mi ++ lov yu</span><span class="ex-en">I love you extremely
+              much</span></div>
+          <div class="example-row"><span class="ex-nx">da ~ bon</span><span class="ex-en">They are somewhat good /
+              okay-ish</span></div>
+          <div class="example-row"><span class="ex-nx">wi + nid ayd nau</span><span class="ex-en">We really need help
+              right now</span></div>
+          <div class="example-row"><span class="ex-nx">yu ~ sle?</span><span class="ex-en">Are you a little
+              tired?</span></div>
+        </div>
+      </div>
+
+      <!-- LESSON 5 -->
+      <div class="lesson-panel" id="lesson-4">
+        <div class="lesson-intro">
+          <h3>🗣️ Lesson 5: Full Sentences — Putting It Together</h3>
+          <p>NEXIS word order is always: <strong>Subject → Verb → Object</strong>. Never changes. This removes almost
+            all ambiguity. Add tense markers and intensity and you can express nearly anything.</p>
+        </div>
+        <div class="rule-cards">
+          <div class="rule-card">
+            <div class="label">Rule</div>
+            <h4>Subject first</h4>
+            <p>Who is doing the action. Always first: "mi", "yu", "da", "wi" or a noun.</p>
+          </div>
+          <div class="rule-card">
+            <div class="label">Rule</div>
+            <h4>Verb second</h4>
+            <p>What is happening. Add tense marker before if needed: "go", "+ go", "– go".</p>
+          </div>
+          <div class="rule-card">
+            <div class="label">Rule</div>
+            <h4>Object third</h4>
+            <p>Who or what the action affects. "mi go lo" = I go (to) place. "mi et bon" = I eat good (food).</p>
+          </div>
+          <div class="rule-card">
+            <div class="label">Compounds</div>
+            <h4>Join roots with –</h4>
+            <p>"hap-tim" = hello. "pos-tim" = later. "he-bad" = sick. Build any concept from the core words.</p>
+          </div>
+        </div>
+        <div class="example-block">
+          <div class="example-row"><span class="ex-nx">mi + wan et. yu hap et?</span><span class="ex-en">I really want
+              to eat. Are you happy to eat? (hungry?)</span></div>
+          <div class="example-row"><span class="ex-nx">wi – don + bon wok pre-tim</span><span class="ex-en">We did very
+              good work earlier / yesterday</span></div>
+          <div class="example-row"><span class="ex-nx">yu + ayd mi lern hau don wo?</span><span class="ex-en">Can you
+              help me learn how to do this?</span></div>
+          <div class="example-row"><span class="ex-nx">da – no ke. mi ~ bad fo da.</span><span class="ex-en">They didn't
+              come. I feel a little bad for them.</span></div>
+          <div class="example-row"><span class="ex-nx">mi ++ lov wi lo.</span><span class="ex-en">I love our place
+              extremely much.</span></div>
+        </div>
+      </div>
+    </section>
   </div>
-</section>
-</div>
 
-<!-- QUIZ -->
-<div id="quiz" style="background:white; padding: 5rem 2rem;">
-<section style="max-width:700px; margin:0 auto; padding:0; text-align:center;">
-  <div class="reveal">
-    <div class="section-tag sun">Test Yourself</div>
-    <h2 class="section-title">Quick Quiz</h2>
-    <p class="section-desc" style="margin: 0 auto 2rem;">Think you know your NEXIS? Test your skills! Works for ages 6 and up.</p>
+  <!-- PRONUNCIATION -->
+  <div id="pronunciation" style="background:white; padding: 5rem 2rem;">
+    <section style="max-width:1100px; margin:0 auto; padding:0;">
+      <div class="reveal">
+        <div class="section-tag" style="background:#ede9fe;color:var(--lavender);">🔊 Listen & Learn</div>
+        <h2 class="section-title">Pronunciation Guide</h2>
+        <p class="section-desc">Every word in NEXIS is spelled exactly how it sounds. Tap any 🔊 button to hear it
+          spoken aloud. Use the speed controls to slow it down for learning.</p>
+      </div>
+
+      <div class="reveal"
+        style="background:var(--deep); border-radius:20px; padding:1.5rem 2rem; margin-bottom:2rem; display:flex; align-items:center; gap:1rem; flex-wrap:wrap;">
+        <span style="font-family:var(--body); font-size:0.82rem; color:rgba(255,255,255,0.55); font-weight:600;">🔊
+          Playback Speed:</span>
+        <button class="speed-btn" onclick="setSpeed(0.55,this)">🐢 Slow</button>
+        <button class="speed-btn active" onclick="setSpeed(0.82,this)">🚶 Normal</button>
+        <button class="speed-btn" onclick="setSpeed(1.1,this)">🏃 Fast</button>
+        <span style="font-family:var(--body); font-size:0.75rem; color:rgba(255,255,255,0.3); margin-left:auto;">Tap any
+          🔊 anywhere on the page</span>
+      </div>
+
+      <div class="reveal" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:1.5rem;">
+
+        <div style="background:var(--sky); border-radius:16px; padding:1.5rem; border:2px solid var(--border);">
+          <div
+            style="font-family:var(--display); font-size:1rem; font-weight:800; color:var(--deep); margin-bottom:1rem; padding-bottom:0.75rem; border-bottom:2px solid var(--border);">
+            👋 Greetings</div>
+          <div style="display:flex; flex-direction:column; gap:0.6rem;">
+            <div
+              style="display:flex; justify-content:space-between; align-items:center; background:white; border-radius:10px; padding:0.75rem 1rem;">
+              <div><span
+                  style="font-family:monospace; font-weight:800; color:var(--teal); font-size:1rem;">hap-tim</span><br><span
+                  style="font-size:0.75rem; color:var(--muted);">hello</span></div>
+              <button class="speak-btn" data-text="hap tim" style="width:34px;height:34px;font-size:1rem;">🔊</button>
+            </div>
+            <div
+              style="display:flex; justify-content:space-between; align-items:center; background:white; border-radius:10px; padding:0.75rem 1rem;">
+              <div><span style="font-family:monospace; font-weight:800; color:var(--teal); font-size:1rem;">slo
+                  go</span><br><span style="font-size:0.75rem; color:var(--muted);">goodbye</span></div>
+              <button class="speak-btn" data-text="slo go" style="width:34px;height:34px;font-size:1rem;">🔊</button>
+            </div>
+            <div
+              style="display:flex; justify-content:space-between; align-items:center; background:white; border-radius:10px; padding:0.75rem 1rem;">
+              <div><span
+                  style="font-family:monospace; font-weight:800; color:var(--teal); font-size:1rem;">bon-don</span><br><span
+                  style="font-size:0.75rem; color:var(--muted);">thank you</span></div>
+              <button class="speak-btn" data-text="bon don" style="width:34px;height:34px;font-size:1rem;">🔊</button>
+            </div>
+            <div
+              style="display:flex; justify-content:space-between; align-items:center; background:white; border-radius:10px; padding:0.75rem 1rem;">
+              <div><span style="font-family:monospace; font-weight:800; color:var(--teal); font-size:1rem;">yu
+                  bon?</span><br><span style="font-size:0.75rem; color:var(--muted);">how are you?</span></div>
+              <button class="speak-btn" data-text="yu bon?" style="width:34px;height:34px;font-size:1rem;">🔊</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:var(--sky); border-radius:16px; padding:1.5rem; border:2px solid var(--border);">
+          <div
+            style="font-family:var(--display); font-size:1rem; font-weight:800; color:var(--deep); margin-bottom:1rem; padding-bottom:0.75rem; border-bottom:2px solid var(--border);">
+            ⚡ Common Phrases</div>
+          <div style="display:flex; flex-direction:column; gap:0.6rem;">
+            <div
+              style="display:flex; justify-content:space-between; align-items:center; background:white; border-radius:10px; padding:0.75rem 1rem;">
+              <div><span style="font-family:monospace; font-weight:800; color:var(--teal); font-size:1rem;">mi nid
+                  ayd</span><br><span style="font-size:0.75rem; color:var(--muted);">I need help</span></div>
+              <button class="speak-btn" data-text="mi nid ayd"
+                style="width:34px;height:34px;font-size:1rem;">🔊</button>
+            </div>
+            <div
+              style="display:flex; justify-content:space-between; align-items:center; background:white; border-radius:10px; padding:0.75rem 1rem;">
+              <div><span style="font-family:monospace; font-weight:800; color:var(--teal); font-size:1rem;">mi no
+                  lern</span><br><span style="font-size:0.75rem; color:var(--muted);">I don't understand</span></div>
+              <button class="speak-btn" data-text="mi no lern"
+                style="width:34px;height:34px;font-size:1rem;">🔊</button>
+            </div>
+            <div
+              style="display:flex; justify-content:space-between; align-items:center; background:white; border-radius:10px; padding:0.75rem 1rem;">
+              <div><span style="font-family:monospace; font-weight:800; color:var(--teal); font-size:1rem;">wi +
+                  don!</span><br><span style="font-size:0.75rem; color:var(--muted);">we will definitely do it!</span>
+              </div>
+              <button class="speak-btn" data-text="wi don!" style="width:34px;height:34px;font-size:1rem;">🔊</button>
+            </div>
+            <div
+              style="display:flex; justify-content:space-between; align-items:center; background:white; border-radius:10px; padding:0.75rem 1rem;">
+              <div><span style="font-family:monospace; font-weight:800; color:var(--teal); font-size:1rem;">mi ++ lov
+                  yu</span><br><span style="font-size:0.75rem; color:var(--muted);">I love you extremely</span></div>
+              <button class="speak-btn" data-text="mi extremely lov yu"
+                style="width:34px;height:34px;font-size:1rem;">🔊</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:var(--sky); border-radius:16px; padding:1.5rem; border:2px solid var(--border);">
+          <div
+            style="font-family:var(--display); font-size:1rem; font-weight:800; color:var(--deep); margin-bottom:1rem; padding-bottom:0.75rem; border-bottom:2px solid var(--border);">
+            🌟 Full Sentences</div>
+          <div style="display:flex; flex-direction:column; gap:0.6rem;">
+            <div
+              style="display:flex; justify-content:space-between; align-items:center; background:white; border-radius:10px; padding:0.75rem 1rem;">
+              <div><span style="font-family:monospace; font-weight:800; color:var(--teal); font-size:0.9rem;">mi + wan
+                  et. yu hap et?</span><br><span style="font-size:0.75rem; color:var(--muted);">I want to eat. Are you
+                  hungry?</span></div>
+              <button class="speak-btn" data-text="mi wan et. yu hap et?"
+                style="width:34px;height:34px;font-size:1rem;">🔊</button>
+            </div>
+            <div
+              style="display:flex; justify-content:space-between; align-items:center; background:white; border-radius:10px; padding:0.75rem 1rem;">
+              <div><span style="font-family:monospace; font-weight:800; color:var(--teal); font-size:0.9rem;">wi – don
+                  bon wok</span><br><span style="font-size:0.75rem; color:var(--muted);">We did good work</span></div>
+              <button class="speak-btn" data-text="wi don bon wok"
+                style="width:34px;height:34px;font-size:1rem;">🔊</button>
+            </div>
+            <div
+              style="display:flex; justify-content:space-between; align-items:center; background:white; border-radius:10px; padding:0.75rem 1rem;">
+              <div><span style="font-family:monospace; font-weight:800; color:var(--teal); font-size:0.9rem;">da + ke
+                  pos-tim</span><br><span style="font-size:0.75rem; color:var(--muted);">They will come later</span>
+              </div>
+              <button class="speak-btn" data-text="da ke pos tim"
+                style="width:34px;height:34px;font-size:1rem;">🔊</button>
+            </div>
+            <div
+              style="display:flex; justify-content:space-between; align-items:center; background:white; border-radius:10px; padding:0.75rem 1rem;">
+              <div><span style="font-family:monospace; font-weight:800; color:var(--teal); font-size:0.9rem;">yu ayd mi
+                  lern hau don?</span><br><span style="font-size:0.75rem; color:var(--muted);">Can you help me learn how
+                  to do this?</span></div>
+              <button class="speak-btn" data-text="yu ayd mi lern hau don?"
+                style="width:34px;height:34px;font-size:1rem;">🔊</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
   </div>
 
-  <div class="quiz-box reveal">
-    <div class="quiz-question" id="q-title">What does this mean?</div>
-    <div class="quiz-prompt" id="q-prompt">mi + hap</div>
-    <div class="quiz-options" id="q-options"></div>
-    <div class="quiz-feedback" id="q-feedback"></div>
+  <!-- QUIZ -->
+  <div id="quiz" style="background:white; padding: 5rem 2rem;">
+    <section style="max-width:700px; margin:0 auto; padding:0; text-align:center;">
+      <div class="reveal">
+        <div class="section-tag sun">Test Yourself</div>
+        <h2 class="section-title">Quick Quiz</h2>
+        <p class="section-desc" style="margin: 0 auto 2rem;">Think you know your NEXIS? Test your skills! Works for ages
+          6 and up.</p>
+      </div>
+
+      <div class="quiz-box reveal">
+        <div class="quiz-question" id="q-title">What does this mean?</div>
+        <div class="quiz-prompt" id="q-prompt">mi + hap</div>
+        <div class="quiz-options" id="q-options"></div>
+        <div class="quiz-feedback" id="q-feedback"></div>
+      </div>
+
+      <div class="quiz-score reveal">
+        <div class="score-badge">Score: <span id="score-correct">0</span> / <span id="score-total">0</span></div>
+        <button class="btn-secondary" onclick="nextQuestion()" id="next-btn"
+          style="display:none; padding: 0.5rem 1.5rem; font-size:0.88rem;">Next Question →</button>
+      </div>
+    </section>
   </div>
 
-  <div class="quiz-score reveal">
-    <div class="score-badge">Score: <span id="score-correct">0</span> / <span id="score-total">0</span></div>
-    <button class="btn-secondary" onclick="nextQuestion()" id="next-btn" style="display:none; padding: 0.5rem 1.5rem; font-size:0.88rem;">Next Question →</button>
+  <!-- COMPARE -->
+  <div id="compare" style="background:var(--sky); padding: 5rem 2rem;">
+    <section style="max-width:1100px; margin:0 auto; padding:0;">
+      <div class="reveal">
+        <div class="section-tag lavender">See the Difference</div>
+        <h2 class="section-title">English vs NEXIS</h2>
+        <p class="section-desc">The same thought — dramatically fewer words. No meaning is lost.</p>
+      </div>
+      <div class="compare-grid reveal">
+        <div class="compare-row">
+          <div class="cmp-box">
+            <div class="cmp-lang-tag">🇬🇧 English</div>
+            <div class="cmp-text">I would really love to get something to eat, are you hungry too?</div>
+            <div class="cmp-count">13 words</div>
+          </div>
+          <div class="cmp-box nexis-box">
+            <div class="cmp-lang-tag">⚡ NEXIS</div>
+            <div class="cmp-text">mi + wan et. yu hap et?</div>
+            <div class="cmp-count">6 tokens <span class="saving-pill">54% shorter</span></div>
+          </div>
+        </div>
+        <div class="compare-row">
+          <div class="cmp-box">
+            <div class="cmp-lang-tag">🇬🇧 English</div>
+            <div class="cmp-text">I'm not going to be able to make it to the meeting tomorrow morning.</div>
+            <div class="cmp-count">14 words</div>
+          </div>
+          <div class="cmp-box nexis-box">
+            <div class="cmp-lang-tag">⚡ NEXIS</div>
+            <div class="cmp-text">mi + no ke mit pos-tim.</div>
+            <div class="cmp-count">5 tokens <span class="saving-pill">64% shorter</span></div>
+          </div>
+        </div>
+        <div class="compare-row">
+          <div class="cmp-box">
+            <div class="cmp-lang-tag">🇬🇧 English</div>
+            <div class="cmp-text">We worked extremely hard yesterday but unfortunately didn't finish everything in time.
+            </div>
+            <div class="cmp-count">13 words</div>
+          </div>
+          <div class="cmp-box nexis-box">
+            <div class="cmp-lang-tag">⚡ NEXIS</div>
+            <div class="cmp-text">wi – ++ wok pre-tim. wi – no don tim.</div>
+            <div class="cmp-count">9 tokens <span class="saving-pill">31% shorter</span></div>
+          </div>
+        </div>
+        <div class="compare-row">
+          <div class="cmp-box">
+            <div class="cmp-lang-tag">🇬🇧 English</div>
+            <div class="cmp-text">Can you please help me understand how to do this task?</div>
+            <div class="cmp-count">11 words</div>
+          </div>
+          <div class="cmp-box nexis-box">
+            <div class="cmp-lang-tag">⚡ NEXIS</div>
+            <div class="cmp-text">yu ayd mi lern hau don?</div>
+            <div class="cmp-count">6 tokens <span class="saving-pill">45% shorter</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
-</section>
-</div>
 
-<!-- COMPARE -->
-<div id="compare" style="background:var(--sky); padding: 5rem 2rem;">
-<section style="max-width:1100px; margin:0 auto; padding:0;">
-  <div class="reveal">
-    <div class="section-tag lavender">See the Difference</div>
-    <h2 class="section-title">English vs NEXIS</h2>
-    <p class="section-desc">The same thought — dramatically fewer words. No meaning is lost.</p>
+  <!-- REFERENCE -->
+  <div id="reference" style="background:white; padding: 5rem 2rem;">
+    <section style="max-width:1100px; margin:0 auto; padding:0;">
+      <div class="reveal">
+        <div class="section-tag">Quick Reference</div>
+        <h2 class="section-title">Full cheat sheet</h2>
+        <p class="section-desc">Bookmark this. Everything you need to start using NEXIS today.</p>
+      </div>
+      <div class="ref-grid reveal">
+        <div class="ref-card">
+          <div class="ref-card-title">👤 Pronouns</div>
+          <div class="ref-row"><span class="ref-nx">mi</span><span class="ref-en">I / me / my</span></div>
+          <div class="ref-row"><span class="ref-nx">yu</span><span class="ref-en">you / your</span></div>
+          <div class="ref-row"><span class="ref-nx">da</span><span class="ref-en">they / them / their</span></div>
+          <div class="ref-row"><span class="ref-nx">wi</span><span class="ref-en">we / us / our</span></div>
+        </div>
+        <div class="ref-card">
+          <div class="ref-card-title">⏰ Tense Markers</div>
+          <div class="ref-row"><span class="ref-nx">–</span><span class="ref-en">past (before verb)</span></div>
+          <div class="ref-row"><span class="ref-nx">(none)</span><span class="ref-en">present</span></div>
+          <div class="ref-row"><span class="ref-nx">+</span><span class="ref-en">future (before verb)</span></div>
+        </div>
+        <div class="ref-card">
+          <div class="ref-card-title">⚡ Intensity</div>
+          <div class="ref-row"><span class="ref-nx">++</span><span class="ref-en">extremely</span></div>
+          <div class="ref-row"><span class="ref-nx">+</span><span class="ref-en">very / really</span></div>
+          <div class="ref-row"><span class="ref-nx">~</span><span class="ref-en">somewhat / a little</span></div>
+          <div class="ref-row"><span class="ref-nx">no</span><span class="ref-en">not / negation</span></div>
+          <div class="ref-row"><span class="ref-nx">?</span><span class="ref-en">question (end of sentence)</span></div>
+        </div>
+        <div class="ref-card">
+          <div class="ref-card-title">👋 Greetings</div>
+          <div class="ref-row"><span class="ref-nx">hap-tim</span><span class="ref-en">hello</span></div>
+          <div class="ref-row"><span class="ref-nx">slo go</span><span class="ref-en">goodbye</span></div>
+          <div class="ref-row"><span class="ref-nx">yu bon?</span><span class="ref-en">how are you?</span></div>
+          <div class="ref-row"><span class="ref-nx">mi bon, yu?</span><span class="ref-en">I'm good, you?</span></div>
+          <div class="ref-row"><span class="ref-nx">bon-don</span><span class="ref-en">thank you</span></div>
+        </div>
+        <div class="ref-card">
+          <div class="ref-card-title">🔑 Core Verbs</div>
+          <div class="ref-row"><span class="ref-nx">go / ke</span><span class="ref-en">go / come</span></div>
+          <div class="ref-row"><span class="ref-nx">si / se</span><span class="ref-en">see / say</span></div>
+          <div class="ref-row"><span class="ref-nx">don / hav</span><span class="ref-en">do / have</span></div>
+          <div class="ref-row"><span class="ref-nx">wan / nid</span><span class="ref-en">want / need</span></div>
+          <div class="ref-row"><span class="ref-nx">lern / tel</span><span class="ref-en">learn / tell</span></div>
+          <div class="ref-row"><span class="ref-nx">ayd / kep</span><span class="ref-en">help / keep</span></div>
+        </div>
+        <div class="ref-card">
+          <div class="ref-card-title">🌟 Useful Phrases</div>
+          <div class="ref-row"><span class="ref-nx">mi no lern</span><span class="ref-en">I don't understand</span>
+          </div>
+          <div class="ref-row"><span class="ref-nx">fas!</span><span class="ref-en">hurry! / quickly!</span></div>
+          <div class="ref-row"><span class="ref-nx">mi nid ayd</span><span class="ref-en">I need help</span></div>
+          <div class="ref-row"><span class="ref-nx">bon wok!</span><span class="ref-en">good work!</span></div>
+          <div class="ref-row"><span class="ref-nx">wi + don!</span><span class="ref-en">we can definitely do it!</span>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
-  <div class="compare-grid reveal">
-    <div class="compare-row">
-      <div class="cmp-box"><div class="cmp-lang-tag">🇬🇧 English</div><div class="cmp-text">I would really love to get something to eat, are you hungry too?</div><div class="cmp-count">13 words</div></div>
-      <div class="cmp-box nexis-box"><div class="cmp-lang-tag">⚡ NEXIS</div><div class="cmp-text">mi + wan et. yu hap et?</div><div class="cmp-count">6 tokens <span class="saving-pill">54% shorter</span></div></div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">NEX<span>IS</span></div>
+    <p class="footer-mission">
+      NEXIS was built to enhance human language — not replace it.<br>
+      Every word we strip away is a second saved. Every second saved is a thought more clearly shared.<br>
+      Language evolves. NEXIS is the next step.
+    </p>
+    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-bottom:1.5rem;">
+      <a href="#lessons" class="btn-primary" style="font-size:0.88rem; padding:0.7rem 1.5rem;">Start Learning →</a>
+      <a href="#quiz" class="btn-secondary"
+        style="font-size:0.88rem; padding:0.7rem 1.5rem; border-color:rgba(255,255,255,0.2); color:rgba(255,255,255,0.7); background:transparent;">Take
+        the Quiz</a>
     </div>
-    <div class="compare-row">
-      <div class="cmp-box"><div class="cmp-lang-tag">🇬🇧 English</div><div class="cmp-text">I'm not going to be able to make it to the meeting tomorrow morning.</div><div class="cmp-count">14 words</div></div>
-      <div class="cmp-box nexis-box"><div class="cmp-lang-tag">⚡ NEXIS</div><div class="cmp-text">mi + no ke mit pos-tim.</div><div class="cmp-count">5 tokens <span class="saving-pill">64% shorter</span></div></div>
+    <div class="footer-credit">
+      NEXIS language created with Claude (Anthropic) &nbsp;·&nbsp;
+      Conceived and requested by <strong style="color:rgba(255,255,255,0.45)">Eric Santos Santos</strong> &nbsp;·&nbsp;
+      &copy; 2026 NEXIS Project
     </div>
-    <div class="compare-row">
-      <div class="cmp-box"><div class="cmp-lang-tag">🇬🇧 English</div><div class="cmp-text">We worked extremely hard yesterday but unfortunately didn't finish everything in time.</div><div class="cmp-count">13 words</div></div>
-      <div class="cmp-box nexis-box"><div class="cmp-lang-tag">⚡ NEXIS</div><div class="cmp-text">wi – ++ wok pre-tim. wi – no don tim.</div><div class="cmp-count">9 tokens <span class="saving-pill">31% shorter</span></div></div>
-    </div>
-    <div class="compare-row">
-      <div class="cmp-box"><div class="cmp-lang-tag">🇬🇧 English</div><div class="cmp-text">Can you please help me understand how to do this task?</div><div class="cmp-count">11 words</div></div>
-      <div class="cmp-box nexis-box"><div class="cmp-lang-tag">⚡ NEXIS</div><div class="cmp-text">yu ayd mi lern hau don?</div><div class="cmp-count">6 tokens <span class="saving-pill">45% shorter</span></div></div>
-    </div>
-  </div>
-</section>
-</div>
+  </footer>
 
-<!-- REFERENCE -->
-<div id="reference" style="background:white; padding: 5rem 2rem;">
-<section style="max-width:1100px; margin:0 auto; padding:0;">
-  <div class="reveal">
-    <div class="section-tag">Quick Reference</div>
-    <h2 class="section-title">Full cheat sheet</h2>
-    <p class="section-desc">Bookmark this. Everything you need to start using NEXIS today.</p>
-  </div>
-  <div class="ref-grid reveal">
-    <div class="ref-card">
-      <div class="ref-card-title">👤 Pronouns</div>
-      <div class="ref-row"><span class="ref-nx">mi</span><span class="ref-en">I / me / my</span></div>
-      <div class="ref-row"><span class="ref-nx">yu</span><span class="ref-en">you / your</span></div>
-      <div class="ref-row"><span class="ref-nx">da</span><span class="ref-en">they / them / their</span></div>
-      <div class="ref-row"><span class="ref-nx">wi</span><span class="ref-en">we / us / our</span></div>
-    </div>
-    <div class="ref-card">
-      <div class="ref-card-title">⏰ Tense Markers</div>
-      <div class="ref-row"><span class="ref-nx">–</span><span class="ref-en">past (before verb)</span></div>
-      <div class="ref-row"><span class="ref-nx">(none)</span><span class="ref-en">present</span></div>
-      <div class="ref-row"><span class="ref-nx">+</span><span class="ref-en">future (before verb)</span></div>
-    </div>
-    <div class="ref-card">
-      <div class="ref-card-title">⚡ Intensity</div>
-      <div class="ref-row"><span class="ref-nx">++</span><span class="ref-en">extremely</span></div>
-      <div class="ref-row"><span class="ref-nx">+</span><span class="ref-en">very / really</span></div>
-      <div class="ref-row"><span class="ref-nx">~</span><span class="ref-en">somewhat / a little</span></div>
-      <div class="ref-row"><span class="ref-nx">no</span><span class="ref-en">not / negation</span></div>
-      <div class="ref-row"><span class="ref-nx">?</span><span class="ref-en">question (end of sentence)</span></div>
-    </div>
-    <div class="ref-card">
-      <div class="ref-card-title">👋 Greetings</div>
-      <div class="ref-row"><span class="ref-nx">hap-tim</span><span class="ref-en">hello</span></div>
-      <div class="ref-row"><span class="ref-nx">slo go</span><span class="ref-en">goodbye</span></div>
-      <div class="ref-row"><span class="ref-nx">yu bon?</span><span class="ref-en">how are you?</span></div>
-      <div class="ref-row"><span class="ref-nx">mi bon, yu?</span><span class="ref-en">I'm good, you?</span></div>
-      <div class="ref-row"><span class="ref-nx">bon-don</span><span class="ref-en">thank you</span></div>
-    </div>
-    <div class="ref-card">
-      <div class="ref-card-title">🔑 Core Verbs</div>
-      <div class="ref-row"><span class="ref-nx">go / ke</span><span class="ref-en">go / come</span></div>
-      <div class="ref-row"><span class="ref-nx">si / se</span><span class="ref-en">see / say</span></div>
-      <div class="ref-row"><span class="ref-nx">don / hav</span><span class="ref-en">do / have</span></div>
-      <div class="ref-row"><span class="ref-nx">wan / nid</span><span class="ref-en">want / need</span></div>
-      <div class="ref-row"><span class="ref-nx">lern / tel</span><span class="ref-en">learn / tell</span></div>
-      <div class="ref-row"><span class="ref-nx">ayd / kep</span><span class="ref-en">help / keep</span></div>
-    </div>
-    <div class="ref-card">
-      <div class="ref-card-title">🌟 Useful Phrases</div>
-      <div class="ref-row"><span class="ref-nx">mi no lern</span><span class="ref-en">I don't understand</span></div>
-      <div class="ref-row"><span class="ref-nx">fas!</span><span class="ref-en">hurry! / quickly!</span></div>
-      <div class="ref-row"><span class="ref-nx">mi nid ayd</span><span class="ref-en">I need help</span></div>
-      <div class="ref-row"><span class="ref-nx">bon wok!</span><span class="ref-en">good work!</span></div>
-      <div class="ref-row"><span class="ref-nx">wi + don!</span><span class="ref-en">we can definitely do it!</span></div>
-    </div>
-  </div>
-</section>
-</div>
+  <script>
+    // ── AUDIO ENGINE ──────────────────────────────────────────────────────────────
+    let speechRate = 0.82;   // slightly slow for learners
+    let voices = [];
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-logo">NEX<span>IS</span></div>
-  <p class="footer-mission">
-    NEXIS was built to enhance human language — not replace it.<br>
-    Every word we strip away is a second saved. Every second saved is a thought more clearly shared.<br>
-    Language evolves. NEXIS is the next step.
-  </p>
-  <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-bottom:1.5rem;">
-    <a href="#lessons" class="btn-primary" style="font-size:0.88rem; padding:0.7rem 1.5rem;">Start Learning →</a>
-    <a href="#quiz" class="btn-secondary" style="font-size:0.88rem; padding:0.7rem 1.5rem; border-color:rgba(255,255,255,0.2); color:rgba(255,255,255,0.7); background:transparent;">Take the Quiz</a>
-  </div>
-  <div class="footer-credit">
-    NEXIS language created with Claude (Anthropic) &nbsp;·&nbsp;
-    Conceived and requested by <strong style="color:rgba(255,255,255,0.45)">Eric Santos Santos</strong> &nbsp;·&nbsp;
-    &copy; 2026 NEXIS Project
-  </div>
-</footer>
+    // NEXIS phonetic map – symbols → speakable words
+    function nexisToSpeech(text) {
+      const wordMap = {
+        'mi': 'mee',
+        'yu': 'yoo',
+        'da': 'dah',
+        'wi': 'wee',
+        'go': 'goh',
+        'ke': 'kay',
+        'si': 'see',
+        'se': 'say',
+        'bon': 'bone',
+        'hap': 'happ',
+        'bad': 'bad',
+        'fas': 'fass',
+        'slo': 'slow',
+        'nau': 'now',
+        'pre': 'pray',
+        'pos': 'pose',
+        'lo': 'loh',
+        'fo': 'foh',
+        'et': 'ett',
+        'dri': 'dree',
+        'sle': 'slay',
+        'wok': 'woke',
+        'ple': 'play',
+        'mon': 'mohn',
+        'tim': 'teem',
+        'wy': 'why',
+        'hau': 'how',
+        'wo': 'woh',
+        'hu': 'hoo',
+        'mit': 'meet',
+        'lern': 'lairn',
+        'tel': 'tell',
+        'lov': 'luv',
+        'fir': 'fear',
+        'ayd': 'aid',
+        'kep': 'keep',
+        'les': 'less',
+        'skl': 'skill',
+        'wan': 'wahn',
+        'nid': 'need',
+        'hav': 'hav',
+        'don': 'dohn',
+        'ya': 'yah',
+        'ok': 'okay',
+        'no': 'noh',
+        'big': 'big',
+        'sml': 'small',
+        'zen': 'zen',
+        'he': 'hay',
+        'wy': 'why',
+      };
 
-<script>
-// ── AUDIO ENGINE ──────────────────────────────────────────────────────────────
-let speechRate = 0.82;   // slightly slow for learners
-let voices = [];
+      let result = text
+        .replace(/\+\+/g, ' extremely ')
+        .replace(/\+/g, ' ')
+        .replace(/–/g, ' ')
+        .replace(/~/g, ' somewhat ')
+        .replace(/\?/g, '?')
+        .replace(/-/g, ' ');
 
-// NEXIS phonetic map – symbols → speakable words
-function nexisToSpeech(text) {
-  return text
-    .replace(/\+\+/g, ' extremely ')
-    .replace(/\+/g,   ' ')          // tense/intensity marker – just pause
-    .replace(/–/g,    ' ')
-    .replace(/~/g,    ' somewhat ')
-    .replace(/\?/g,   '?')
-    .replace(/-/g,    ' ')          // compound word joiner
-    .replace(/\s+/g,  ' ')
-    .trim();
-}
+      // Replace each NEXIS word with its phonetic version
+      result = result.replace(/\b(\w+)\b/g, match => wordMap[match.toLowerCase()] || match);
 
-function speak(text, btn) {
-  if (!window.speechSynthesis) return;
-  window.speechSynthesis.cancel();
+      return result.replace(/\s+/g, ' ').trim();
+    }
 
-  const clean = nexisToSpeech(text);
-  const utt = new SpeechSynthesisUtterance(clean);
-  utt.rate = speechRate;
-  utt.pitch = 1.05;
+    function speak(text, btn) {
+      if (!window.speechSynthesis) return;
+      window.speechSynthesis.cancel();
 
-  // Prefer a clear English voice
-  if (voices.length) {
-    const pref = voices.find(v => v.lang.startsWith('en') && v.name.toLowerCase().includes('samantha'))
-               || voices.find(v => v.lang.startsWith('en') && !v.name.toLowerCase().includes('compact'))
-               || voices.find(v => v.lang.startsWith('en'));
-    if (pref) utt.voice = pref;
-  }
+      const clean = nexisToSpeech(text);
+      const utt = new SpeechSynthesisUtterance(clean);
+      utt.rate = speechRate;
+      utt.pitch = 1.05;
 
-  if (btn) {
-    btn.classList.add('speaking');
-    utt.onend = utt.onerror = () => btn.classList.remove('speaking');
-  }
-  window.speechSynthesis.speak(utt);
-}
+      // Prefer a clear English voice
+      if (voices.length) {
+        const pref = voices.find(v => v.lang.startsWith('en') && v.name.toLowerCase().includes('samantha'))
+          || voices.find(v => v.lang.startsWith('en') && !v.name.toLowerCase().includes('compact'))
+          || voices.find(v => v.lang.startsWith('en'));
+        if (pref) utt.voice = pref;
+      }
 
-// Load voices (async in Chrome)
-function loadVoices() {
-  voices = window.speechSynthesis.getVoices();
-}
-window.speechSynthesis.onvoiceschanged = loadVoices;
-loadVoices();
+      if (btn) {
+        btn.classList.add('speaking');
+        utt.onend = utt.onerror = () => btn.classList.remove('speaking');
+      }
+      window.speechSynthesis.speak(utt);
+    }
 
-// Global click handler for all speak buttons
-document.addEventListener('click', e => {
-  const btn = e.target.closest('.speak-btn');
-  if (!btn) return;
-  const text = btn.dataset.text;
-  if (text) speak(text, btn);
-});
+    // Load voices (async in Chrome)
+    function loadVoices() {
+      voices = window.speechSynthesis.getVoices();
+    }
+    window.speechSynthesis.onvoiceschanged = loadVoices;
+    loadVoices();
 
-// Speed controls
-function setSpeed(rate, el) {
-  speechRate = rate;
-  document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
-  el.classList.add('active');
-}
+    // Global click handler for all speak buttons
+    document.addEventListener('click', e => {
+      const btn = e.target.closest('.speak-btn');
+      if (!btn) return;
+      const text = btn.dataset.text;
+      if (text) speak(text, btn);
+    });
 
-// ── ADD SPEAK BUTTONS TO VOCAB TILES ─────────────────────────────────────────
-document.querySelectorAll('.vocab-tile').forEach(tile => {
-  const nx = tile.querySelector('.nx');
-  if (!nx) return;
-  const word = nx.textContent.trim();
-  const btn = document.createElement('button');
-  btn.className = 'speak-btn';
-  btn.dataset.text = word;
-  btn.title = 'Hear pronunciation';
-  btn.innerHTML = '🔊';
-  tile.appendChild(btn);
-  // Remove old click-to-flip; add flip only on tile body (not btn)
-  tile.onclick = null;
-  tile.style.cursor = 'default';
-  // Tap tile (not btn) still flips
-  tile.addEventListener('click', function(e) {
-    if (!e.target.closest('.speak-btn')) tile.classList.toggle('flipped');
-  });
-});
+    // Speed controls
+    function setSpeed(rate, el) {
+      speechRate = rate;
+      document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+    }
 
-// ── ADD SPEAK BUTTONS TO EXAMPLE ROWS ────────────────────────────────────────
-document.querySelectorAll('.ex-nx').forEach(el => {
-  const text = el.textContent.trim();
-  const btn = document.createElement('button');
-  btn.className = 'speak-btn';
-  btn.dataset.text = text;
-  btn.title = 'Hear pronunciation';
-  btn.innerHTML = '🔊';
-  btn.style.cssText = 'margin-left:0.5rem; width:22px; height:22px; font-size:0.7rem;';
-  el.appendChild(btn);
-});
+    // ── ADD SPEAK BUTTONS TO VOCAB TILES ─────────────────────────────────────────
+    document.querySelectorAll('.vocab-tile').forEach(tile => {
+      const nx = tile.querySelector('.nx');
+      if (!nx) return;
+      const word = nx.textContent.trim();
+      const btn = document.createElement('button');
+      btn.className = 'speak-btn';
+      btn.dataset.text = word;
+      btn.title = 'Hear pronunciation';
+      btn.innerHTML = '🔊';
+      tile.appendChild(btn);
+      // Remove old click-to-flip; add flip only on tile body (not btn)
+      tile.onclick = null;
+      tile.style.cursor = 'default';
+      // Tap tile (not btn) still flips
+      tile.addEventListener('click', function (e) {
+        if (!e.target.closest('.speak-btn')) tile.classList.toggle('flipped');
+      });
+    });
 
-// ── ADD SPEAK BUTTONS TO REFERENCE ROWS ──────────────────────────────────────
-document.querySelectorAll('.ref-nx').forEach(el => {
-  const text = el.textContent.replace(/\//g,' ').trim();
-  if (text === '(none)') return;
-  const btn = document.createElement('button');
-  btn.className = 'speak-btn';
-  btn.dataset.text = text;
-  btn.title = 'Hear pronunciation';
-  btn.innerHTML = '🔊';
-  btn.style.cssText = 'width:20px; height:20px; font-size:0.65rem; margin-left:0.25rem;';
-  el.appendChild(btn);
-});
+    // ── ADD SPEAK BUTTONS TO EXAMPLE ROWS ────────────────────────────────────────
+    document.querySelectorAll('.ex-nx').forEach(el => {
+      const text = el.textContent.trim();
+      const btn = document.createElement('button');
+      btn.className = 'speak-btn';
+      btn.dataset.text = text;
+      btn.title = 'Hear pronunciation';
+      btn.innerHTML = '🔊';
+      btn.style.cssText = 'margin-left:0.5rem; width:22px; height:22px; font-size:0.7rem;';
+      el.appendChild(btn);
+    });
 
-// ── ADD SPEAK BUTTONS TO COMPARE NEXIS BOXES ─────────────────────────────────
-document.querySelectorAll('.cmp-box.nexis-box .cmp-text').forEach(el => {
-  const text = el.textContent.trim();
-  const btn = document.createElement('button');
-  btn.className = 'speak-btn';
-  btn.dataset.text = text;
-  btn.innerHTML = '🔊';
-  btn.style.cssText = 'display:block; margin-top:0.6rem; width:26px; height:26px;';
-  el.parentElement.appendChild(btn);
-});
+    // ── ADD SPEAK BUTTONS TO REFERENCE ROWS ──────────────────────────────────────
+    document.querySelectorAll('.ref-nx').forEach(el => {
+      const text = el.textContent.replace(/\//g, ' ').trim();
+      if (text === '(none)') return;
+      const btn = document.createElement('button');
+      btn.className = 'speak-btn';
+      btn.dataset.text = text;
+      btn.title = 'Hear pronunciation';
+      btn.innerHTML = '🔊';
+      btn.style.cssText = 'width:20px; height:20px; font-size:0.65rem; margin-left:0.25rem;';
+      el.appendChild(btn);
+    });
 
-// ── ADD SPEAK BUTTONS TO QUICK-PHRASE ROWS ───────────────────────────────────
-document.querySelectorAll('.qr-nx').forEach(el => {
-  const text = el.textContent.trim();
-  const btn = document.createElement('button');
-  btn.className = 'speak-btn';
-  btn.dataset.text = text;
-  btn.innerHTML = '🔊';
-  btn.style.cssText = 'width:20px; height:20px; font-size:0.65rem; margin-left:0.25rem;';
-  el.appendChild(btn);
-});
+    // ── ADD SPEAK BUTTONS TO COMPARE NEXIS BOXES ─────────────────────────────────
+    document.querySelectorAll('.cmp-box.nexis-box .cmp-text').forEach(el => {
+      const text = el.textContent.trim();
+      const btn = document.createElement('button');
+      btn.className = 'speak-btn';
+      btn.dataset.text = text;
+      btn.innerHTML = '🔊';
+      btn.style.cssText = 'display:block; margin-top:0.6rem; width:26px; height:26px;';
+      el.parentElement.appendChild(btn);
+    });
 
-// ── TAB SWITCHING ─────────────────────────────────────────────────────────────
-function showLesson(idx) {
-  document.querySelectorAll('.lesson-panel').forEach((p,i) => p.classList.toggle('active', i === idx));
-  document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active', i === idx));
-}
+    // ── ADD SPEAK BUTTONS TO QUICK-PHRASE ROWS ───────────────────────────────────
+    document.querySelectorAll('.qr-nx').forEach(el => {
+      const text = el.textContent.trim();
+      const btn = document.createElement('button');
+      btn.className = 'speak-btn';
+      btn.dataset.text = text;
+      btn.innerHTML = '🔊';
+      btn.style.cssText = 'width:20px; height:20px; font-size:0.65rem; margin-left:0.25rem;';
+      el.appendChild(btn);
+    });
 
-// ── SCROLL REVEAL ─────────────────────────────────────────────────────────────
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.08 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    // ── TAB SWITCHING ─────────────────────────────────────────────────────────────
+    function showLesson(idx) {
+      document.querySelectorAll('.lesson-panel').forEach((p, i) => p.classList.toggle('active', i === idx));
+      document.querySelectorAll('.tab-btn').forEach((b, i) => b.classList.toggle('active', i === idx));
+    }
 
-// ── QUIZ ──────────────────────────────────────────────────────────────────────
-const questions = [
-  { prompt: "mi + hap",     options: ["I was happy","I will be happy","I am happy now","They are happy"],         answer: 1 },
-  { prompt: "yu bon?",      options: ["You are good!","Are you good?","I am good","We are good?"],                answer: 1 },
-  { prompt: "wi – go lo",   options: ["We will go there","We are going","We went there","They went somewhere"],   answer: 2 },
-  { prompt: "mi ++ lov yu", options: ["I somewhat love you","I love you a little","I will love you","I love you extremely"], answer: 3 },
-  { prompt: "da no ke",     options: ["They will come","They did not come","They are not here yet","We did not come"], answer: 1 },
-  { prompt: "fas!",         options: ["Slow down!","Go away!","Hurry! / Quickly!","Far away!"],                   answer: 2 },
-  { prompt: "mi ~ sle",     options: ["I am very tired","I slept a lot","I am a little tired","I will sleep soon"], answer: 2 },
-  { prompt: "bon-don",      options: ["Good morning","Thank you","Good night","Well done"],                       answer: 1 },
-  { prompt: "wi + don wok", options: ["We did some work","We will definitely work","We worked a little","They worked well"], answer: 1 },
-  { prompt: "hap-tim",      options: ["Good night","Goodbye","Hello","Thank you"],                                answer: 2 },
-  { prompt: "mi no lern",   options: ["I learned a lot","I don't understand","I will learn","I need help"],       answer: 1 },
-  { prompt: "yu + ayd mi",  options: ["You slightly helped me","You will not help","You are really helping me","They helped you"], answer: 2 },
-];
+    // ── SCROLL REVEAL ─────────────────────────────────────────────────────────────
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-let current = 0, correct = 0, total = 0, answered = false;
+    // ── QUIZ ──────────────────────────────────────────────────────────────────────
+    const questions = [
+      { prompt: "mi + hap", options: ["I was happy", "I will be happy", "I am happy now", "They are happy"], answer: 1 },
+      { prompt: "yu bon?", options: ["You are good!", "Are you good?", "I am good", "We are good?"], answer: 1 },
+      { prompt: "wi – go lo", options: ["We will go there", "We are going", "We went there", "They went somewhere"], answer: 2 },
+      { prompt: "mi ++ lov yu", options: ["I somewhat love you", "I love you a little", "I will love you", "I love you extremely"], answer: 3 },
+      { prompt: "da no ke", options: ["They will come", "They did not come", "They are not here yet", "We did not come"], answer: 1 },
+      { prompt: "fas!", options: ["Slow down!", "Go away!", "Hurry! / Quickly!", "Far away!"], answer: 2 },
+      { prompt: "mi ~ sle", options: ["I am very tired", "I slept a lot", "I am a little tired", "I will sleep soon"], answer: 2 },
+      { prompt: "bon-don", options: ["Good morning", "Thank you", "Good night", "Well done"], answer: 1 },
+      { prompt: "wi + don wok", options: ["We did some work", "We will definitely work", "We worked a little", "They worked well"], answer: 1 },
+      { prompt: "hap-tim", options: ["Good night", "Goodbye", "Hello", "Thank you"], answer: 2 },
+      { prompt: "mi no lern", options: ["I learned a lot", "I don't understand", "I will learn", "I need help"], answer: 1 },
+      { prompt: "yu + ayd mi", options: ["You slightly helped me", "You will not help", "You are really helping me", "They helped you"], answer: 2 },
+    ];
 
-function loadQuestion() {
-  const q = questions[current];
-  const promptEl = document.getElementById('q-prompt');
-  promptEl.textContent = q.prompt;
-  document.getElementById('q-feedback').textContent = '';
-  document.getElementById('next-btn').style.display = 'none';
+    let current = 0, correct = 0, total = 0, answered = false;
 
-  // Speak button next to prompt
-  let qSpeak = document.getElementById('q-speak-btn');
-  if (!qSpeak) {
-    qSpeak = document.createElement('button');
-    qSpeak.id = 'q-speak-btn';
-    qSpeak.className = 'quiz-speak';
-    qSpeak.innerHTML = '🔊 Hear it';
-    promptEl.insertAdjacentElement('afterend', qSpeak);
-  }
-  qSpeak.onclick = () => speak(q.prompt, qSpeak);
+    function loadQuestion() {
+      const q = questions[current];
+      const promptEl = document.getElementById('q-prompt');
+      promptEl.textContent = q.prompt;
+      document.getElementById('q-feedback').textContent = '';
+      document.getElementById('next-btn').style.display = 'none';
 
-  answered = false;
-  const opts = document.getElementById('q-options');
-  opts.innerHTML = '';
-  q.options.forEach((o, i) => {
-    const btn = document.createElement('button');
-    btn.className = 'quiz-opt';
-    btn.textContent = o;
-    btn.onclick = () => checkAnswer(i, q.answer);
-    opts.appendChild(btn);
-  });
-}
+      // Speak button next to prompt
+      let qSpeak = document.getElementById('q-speak-btn');
+      if (!qSpeak) {
+        qSpeak = document.createElement('button');
+        qSpeak.id = 'q-speak-btn';
+        qSpeak.className = 'quiz-speak';
+        qSpeak.innerHTML = '🔊 Hear it';
+        promptEl.insertAdjacentElement('afterend', qSpeak);
+      }
+      qSpeak.onclick = () => speak(q.prompt, qSpeak);
 
-function checkAnswer(chosen, correct_idx) {
-  if (answered) return;
-  answered = true;
-  total++;
-  document.getElementById('score-total').textContent = total;
-  document.querySelectorAll('.quiz-opt').forEach((b, i) => {
-    if (i === correct_idx) b.classList.add('correct');
-    else if (i === chosen) b.classList.add('wrong');
-    b.disabled = true;
-  });
-  const fb = document.getElementById('q-feedback');
-  if (chosen === correct_idx) {
-    correct++;
-    document.getElementById('score-correct').textContent = correct;
-    fb.textContent = '✅ Correct! bon-don!';
-    fb.style.color = '#10b981';
-    // Play a short happy tone
-    playTone(880, 0.08, 'sine');
-    setTimeout(() => playTone(1100, 0.06, 'sine'), 90);
-  } else {
-    fb.textContent = '❌ Not quite — the right answer is in green.';
-    fb.style.color = 'var(--coral)';
-    playTone(220, 0.1, 'sawtooth');
-  }
-  document.getElementById('next-btn').style.display = 'inline-block';
-}
+      answered = false;
+      const opts = document.getElementById('q-options');
+      opts.innerHTML = '';
+      q.options.forEach((o, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'quiz-opt';
+        btn.textContent = o;
+        btn.onclick = () => checkAnswer(i, q.answer);
+        opts.appendChild(btn);
+      });
+    }
 
-function nextQuestion() {
-  current = (current + 1) % questions.length;
-  loadQuestion();
-}
+    function checkAnswer(chosen, correct_idx) {
+      if (answered) return;
+      answered = true;
+      total++;
+      document.getElementById('score-total').textContent = total;
+      document.querySelectorAll('.quiz-opt').forEach((b, i) => {
+        if (i === correct_idx) b.classList.add('correct');
+        else if (i === chosen) b.classList.add('wrong');
+        b.disabled = true;
+      });
+      const fb = document.getElementById('q-feedback');
+      if (chosen === correct_idx) {
+        correct++;
+        document.getElementById('score-correct').textContent = correct;
+        fb.textContent = '✅ Correct! bon-don!';
+        fb.style.color = '#10b981';
+        // Play a short happy tone
+        playTone(880, 0.08, 'sine');
+        setTimeout(() => playTone(1100, 0.06, 'sine'), 90);
+      } else {
+        fb.textContent = '❌ Not quite — the right answer is in green.';
+        fb.style.color = 'var(--coral)';
+        playTone(220, 0.1, 'sawtooth');
+      }
+      document.getElementById('next-btn').style.display = 'inline-block';
+    }
 
-// ── AUDIO TONE FEEDBACK ───────────────────────────────────────────────────────
-let audioCtx;
-function playTone(freq, dur, type) {
-  try {
-    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    const o = audioCtx.createOscillator();
-    const g = audioCtx.createGain();
-    o.connect(g); g.connect(audioCtx.destination);
-    o.type = type;
-    o.frequency.value = freq;
-    g.gain.setValueAtTime(0.18, audioCtx.currentTime);
-    g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
-    o.start(); o.stop(audioCtx.currentTime + dur);
-  } catch(e) {}
-}
+    function nextQuestion() {
+      current = (current + 1) % questions.length;
+      loadQuestion();
+    }
 
-// ── AUDIO CONTROL BAR (injected before first example block) ───────────────────
-document.addEventListener('DOMContentLoaded', () => {});
+    // ── AUDIO TONE FEEDBACK ───────────────────────────────────────────────────────
+    let audioCtx;
+    function playTone(freq, dur, type) {
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const o = audioCtx.createOscillator();
+        const g = audioCtx.createGain();
+        o.connect(g); g.connect(audioCtx.destination);
+        o.type = type;
+        o.frequency.value = freq;
+        g.gain.setValueAtTime(0.18, audioCtx.currentTime);
+        g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
+        o.start(); o.stop(audioCtx.currentTime + dur);
+      } catch (e) { }
+    }
 
-// Insert speed control bar into lessons section
-const firstExBlock = document.querySelector('.example-block');
-if (firstExBlock) {
-  const bar = document.createElement('div');
-  bar.className = 'audio-bar';
-  bar.innerHTML = `
+    // ── AUDIO CONTROL BAR (injected before first example block) ───────────────────
+    document.addEventListener('DOMContentLoaded', () => { });
+
+    // Insert speed control bar into lessons section
+    const firstExBlock = document.querySelector('.example-block');
+    if (firstExBlock) {
+      const bar = document.createElement('div');
+      bar.className = 'audio-bar';
+      bar.innerHTML = `
     <span class="audio-bar-label">🔊 Audio Speed:</span>
     <button class="speed-btn" onclick="setSpeed(0.6,this)">Slow</button>
     <button class="speed-btn active" onclick="setSpeed(0.82,this)">Normal</button>
     <button class="speed-btn" onclick="setSpeed(1.1,this)">Fast</button>
     <span class="audio-bar-label" style="margin-left:auto; opacity:0.6">Tap any 🔊 to hear pronunciation</span>
   `;
-  firstExBlock.parentElement.insertBefore(bar, firstExBlock);
-}
+      firstExBlock.parentElement.insertBefore(bar, firstExBlock);
+    }
 
-loadQuestion();
-</script>
+    loadQuestion();
+  </script>
 </body>
+
 </html>
